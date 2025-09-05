@@ -1,17 +1,17 @@
 import Layout from "./Layout.jsx";
 
+import Dashboard from "./Dashboard";
 import ScanItem from "./ScanItem";
-
 import SearchGuide from "./SearchGuide";
+import Community from "./Community";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
-    
+    Dashboard: Dashboard,
     ScanItem: ScanItem,
-    
     SearchGuide: SearchGuide,
-    
+    Community: Community,
 }
 
 function _getCurrentPage(url) {
@@ -24,7 +24,7 @@ function _getCurrentPage(url) {
     }
 
     const pageName = Object.keys(PAGES).find(page => page.toLowerCase() === urlLastPart.toLowerCase());
-    return pageName || Object.keys(PAGES)[0];
+    return pageName || "Dashboard"; // Default to Dashboard instead of ScanItem
 }
 
 // Create a wrapper component that uses useLocation inside the Router context
@@ -35,14 +35,11 @@ function PagesContent() {
     return (
         <Layout currentPageName={currentPage}>
             <Routes>            
-                
-                    <Route path="/" element={<ScanItem />} />
-                
-                
+                <Route path="/Dashboard" element={<Dashboard />} />
+                <Route path="/" element={<ScanItem />} />
                 <Route path="/ScanItem" element={<ScanItem />} />
-                
                 <Route path="/SearchGuide" element={<SearchGuide />} />
-                
+                <Route path="/Community" element={<Community />} />
             </Routes>
         </Layout>
     );

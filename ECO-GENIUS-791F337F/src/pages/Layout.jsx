@@ -4,12 +4,20 @@ import {
   Scan,
   Search,
   Leaf,
+  Users,
+  LayoutDashboard
 } from "lucide-react";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
 
   const navigationItems = [
+    {
+      title: "Dashboard",
+      url: "/Dashboard",
+      icon: LayoutDashboard,
+      color: "text-blue-600"
+    },
     {
       title: "EcoGenius AI Lens",
       url: "/",
@@ -20,7 +28,13 @@ export default function Layout({ children, currentPageName }) {
       title: "Search Guide",
       url: "/SearchGuide",
       icon: Search,
-      color: "text-blue-600"
+      color: "text-indigo-600"
+    },
+    {
+      title: "Community",
+      url: "/Community",
+      icon: Users,
+      color: "text-purple-600"
     }
   ];
 
@@ -30,7 +44,7 @@ export default function Layout({ children, currentPageName }) {
       <header className="bg-white/90 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to="/Dashboard" className="flex items-center space-x-3">
               {/* Logo */}
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Leaf className="w-6 h-6 text-white" />
@@ -72,19 +86,21 @@ export default function Layout({ children, currentPageName }) {
 
       {/* Mobile Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50">
-        <div className="flex items-center justify-around py-2">
+        <div className="grid grid-cols-4 py-2">
           {navigationItems.map((item) => (
             <Link
               key={item.title}
               to={item.url}
               className={`flex flex-col items-center space-y-1 p-3 rounded-xl transition-all duration-200 ${
                 location.pathname === item.url
-                  ? `${item.color} bg-gray-50`
+                  ? `${item.color} bg-emerald-50`
                   : "text-gray-400 hover:text-gray-600"
               }`}
             >
               <item.icon className="w-5 h-5" />
-              <span className="text-xs font-medium">{item.title}</span>
+              <span className="text-xs font-medium truncate max-w-full">
+                {item.title.replace("EcoGenius ", "")}
+              </span>
             </Link>
           ))}
         </div>
