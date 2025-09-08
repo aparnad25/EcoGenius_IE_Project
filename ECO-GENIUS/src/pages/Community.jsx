@@ -1,6 +1,8 @@
 import React from "react";
 import { Users, Plus, Share2, Heart } from "lucide-react";
 
+
+// Not shown in current version
 export default function Community() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

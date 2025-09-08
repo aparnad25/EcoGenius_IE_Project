@@ -1,6 +1,9 @@
 // src/services/aiService.js
 import OpenAI from 'openai';
 
+// src/services/aiService.js
+import { uploadFileToLambda } from "../api/cloudinaryUploadApi.js";
+
 // Debug line - remove this later
 console.log('API Key loaded:', import.meta.env.VITE_OPENAI_API_KEY ? 'YES' : 'NO');
 
@@ -9,7 +12,20 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
+// Upload file function
+export async function uploadFile(file) {
+  try {
+    const data = await uploadFileToLambda(file);
+    return { file_url: data.secure_url }; // Cloudinary return secure_url
+  } catch (error) {
+    console.error("File upload error:", error);
+    throw new Error("Failed to upload file. Please try again.");
+  }
+}
+
+
 // Upload file function - replace Base44's UploadFile
+/*
 export async function uploadFile(file) {
   const formData = new FormData();
   formData.append('file', file);
@@ -31,6 +47,7 @@ export async function uploadFile(file) {
     throw new Error('Failed to upload file. Please try again.');
   }
 }
+  */
 
 // Analyze image function - replace Base44's InvokeLLM
 export async function analyzeImage({ prompt, file_urls, response_json_schema }) {
