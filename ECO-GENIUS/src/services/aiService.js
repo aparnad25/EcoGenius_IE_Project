@@ -5,7 +5,9 @@ import OpenAI from 'openai';
 import { uploadFileToLambda } from "../api/cloudinaryUploadApi.js";
 
 // Debug line - remove this later
-console.log('API Key loaded:', import.meta.env.VITE_OPENAI_API_KEY ? 'YES' : 'NO');
+//console.log('API Key loaded:', import.meta.env.VITE_OPENAI_API_KEY ? 'YES' : 'NO');
+
+const API_BASE = "https://c2dtf2y4f8.execute-api.ap-southeast-2.amazonaws.com/dev";
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
@@ -49,6 +51,28 @@ export async function uploadFile(file) {
 }
   */
 
+
+// New Analyze image function - calls your API Gateway endpoint
+export async function analyzeImage({ prompt, file_urls }) {
+  try {
+    const response = await fetch(`${API_BASE}/analyze`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt, file_urls }),
+    });
+
+    if (!response.ok) {
+      throw new Error("AI request failed");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("AI analysis error:", error);
+    throw error;
+  }
+}
+
+/* Old analyze image function - using OpenAI directly
 // Analyze image function - replace Base44's InvokeLLM
 export async function analyzeImage({ prompt, file_urls, response_json_schema }) {
   try {
@@ -122,6 +146,9 @@ export async function analyzeImage({ prompt, file_urls, response_json_schema }) 
     throw new Error('Failed to analyze image. Please try again.');
   }
 }
+*/
+
+
 
 // Text-only AI search function - no images required
 export async function searchRecyclingAdvice(searchTerm) {
