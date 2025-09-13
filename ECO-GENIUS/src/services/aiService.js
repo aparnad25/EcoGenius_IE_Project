@@ -1,5 +1,5 @@
 // src/services/aiService.js
-import OpenAI from 'openai';
+//import OpenAI from 'openai';
 
 // src/services/aiService.js
 import { uploadFileToLambda } from "../api/cloudinaryUploadApi.js";
@@ -9,10 +9,12 @@ import { uploadFileToLambda } from "../api/cloudinaryUploadApi.js";
 
 const API_BASE = "https://c2dtf2y4f8.execute-api.ap-southeast-2.amazonaws.com/dev";
 
+/*  
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true
 });
+*/
 
 // Upload file function
 export async function uploadFile(file) {
@@ -148,12 +150,46 @@ export async function analyzeImage({ prompt, file_urls, response_json_schema }) 
 }
 */
 
-
-
 // Text-only AI search function - no images required
 export async function searchRecyclingAdvice(searchTerm) {
   try {
-    const response = await openai.chat.completions.create({
+    const response = await fetch(`${API_BASE}/analyze`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: `A user in Melbourne, Australia is searching for how to recycle "${searchTerm}". Provide clear recycling advice.
+
+Respond with a JSON object containing:
+1. "name": The common name of the item.
+2. "category": The material category (plastic, glass, paper, cardboard, metal, organic, landfill, e-waste).
+3. "bin_type": The correct Melbourne bin (yellow_recycling, green_organics, red_landfill, special_collection).
+4. "tip": A short, actionable recycling tip for this item.
+5. "explanation": A brief explanation of why it belongs in that bin.
+
+If it's a very ambiguous item, make a best guess or classify it as landfill for safety. Please respond with a valid JSON object.`,
+        file_urls: [] // No images
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("AI request failed");
+    }
+
+    return await response.json(); // lambda returns parsed JSON
+  } catch (error) {
+    console.error("Text search error:", error);
+    throw new Error("Failed to get recycling advice. Please try again.");
+  }
+}
+
+
+
+
+/* Old text-only AI search function - using OpenAI directly
+// Text-only AI search function - no images required
+export async function searchRecyclingAdvice(searchTerm) {
+  try {
+    const response = await fetch(`${API_BASE}/analyze`, {
       model: "gpt-4o",
       messages: [
         {
@@ -184,3 +220,4 @@ If it's a very ambiguous item, make a best guess or classify it as landfill for 
     throw new Error('Failed to get recycling advice. Please try again.');
   }
 }
+  */
