@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 // ========= Multer for form-data upload =========
-const upload = multer({ dest: 'uploads/' });   // Temporary storage for uploaded files
+//const upload = multer({ dest: 'uploads/' });   // Temporary storage for uploaded files
 
 // Configure Cloudinary
 cloudinary.config({
@@ -26,6 +26,7 @@ app.use(express.json({ limit: '10mb' })); // allow big file base64
 // ========= Routes =========
 
 // 1. Form-data upload, this is only for local testing
+/*
 app.post('/api/upload', upload.single('file'), async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path, {
@@ -39,6 +40,7 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
     res.status(500).json({ error: 'Upload failed' });
   }
 });
+*/
 
 // 2. Base64 upload (for debugging), this is for AWS Lambda
 app.post('/api/upload', async (req, res) => {
