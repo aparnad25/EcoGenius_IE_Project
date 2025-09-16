@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createPost } from "../../api/communityApi";
+import { createPost } from "../../api/billboardApi";
 
 export default function NewPost() {
   const [form, setForm] = useState({

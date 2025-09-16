@@ -3,10 +3,9 @@ import Layout from "./Layout.jsx";
 import Dashboard from "./Dashboard";
 import ScanItem from "./ScanItem";
 import SearchGuide from "./SearchGuide";
-import Community from "./Community";
-import CommunityList from "../pages/community/CommunityList.jsx";
-import NewPost from "../pages/community/NewPost";
-import PostDetail from "../pages/community/PostDetail";
+import CommunityList from "./billboard/Billboard.jsx";
+import NewPost from "./billboard/NewPost.jsx";
+import PostDetail from "./billboard/PostDetail.jsx";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 

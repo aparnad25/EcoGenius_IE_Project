@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getPosts } from "../../api/communityApi.js";
-import PostCard from "../../components/community/PostCard";
+import { getPosts } from "../../api/billboardApi.js";
+import PostCard from "../../components/billboard/PostCard.jsx";
 import { Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
