@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import ScanItem from "./ScanItem";
 import SearchGuide from "./SearchGuide";
 import Visualization from "./Visualization"; // Add this import
-import CommunityList from "./billboard/Billboard.jsx";
+import Billboard from "./billboard/Billboard.jsx";
 import NewPost from "./billboard/NewPost.jsx";
 import PostDetail from "./billboard/PostDetail.jsx";
 
@@ -14,7 +14,7 @@ const PAGES = {
     Dashboard: Dashboard,
     ScanItem: ScanItem,
     SearchGuide: SearchGuide,
-    Community: CommunityList,
+    Billboard: Billboard,
     Visualization: Visualization, // Add this line
 }
 
@@ -43,7 +43,7 @@ function PagesContent() {
                 <Route path="/" element={<ScanItem />} />
                 <Route path="/ScanItem" element={<ScanItem />} />
                 <Route path="/SearchGuide" element={<SearchGuide />} />
-                <Route path="/Community" element={<CommunityList />} />
+                <Route path="/Billboard" element={<Billboard />} />
                 <Route path="/Visualization" element={<Visualization />} /> {/* Add this route */}
                 <Route path="/posts/new" element={<NewPost />} />
                 <Route path="/posts/:postId" element={<PostDetail />} />
