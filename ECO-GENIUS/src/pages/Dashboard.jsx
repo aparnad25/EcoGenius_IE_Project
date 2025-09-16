@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Camera, Search, Users, Clock, DollarSign, Trash2, UserCheck, X } from "lucide-react";
+import WasteAnalytics from "../components/visualization/WasteAnalytics";
 import personaImg from "../images/persona_img.png";
 
 export default function Dashboard() {
@@ -99,70 +100,8 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* How EcoGenius Helps Section */}
-        <section className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How EcoGenius Helps
-            </h2>
-            <p className="text-lg text-gray-600">
-              Our tools are designed for sustainable, practical, everyday choices.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* AI Lens */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <Camera className="w-8 h-8 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">AI Lens</h3>
-              <p className="text-gray-600 mb-6">
-                Get instant disposal advice by snapping a photo of any item.
-              </p>
-              <button 
-                onClick={handleNavigateToAILens}
-                className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Try the AI Lens
-              </button>
-            </div>
-
-            {/* Search Guide */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <Search className="w-8 h-8 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Search Guide</h3>
-              <p className="text-gray-600 mb-6">
-                Quickly find the right bin or disposal method for thousands of items.
-              </p>
-              <button 
-                onClick={handleNavigateToSearchGuide}
-                className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Open the Guide
-              </button>
-            </div>
-
-            {/* Community Exchange */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Community Exchange</h3>
-              <p className="text-gray-600 mb-6">
-                Give away unwanted items or share removal costs with your neighbours.
-              </p>
-              <button 
-                onClick={handleNavigateToCommunity}
-                className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Explore Community
-              </button>
-            </div>
-          </div>
-        </section>
+        {/* NEW: Victoria Waste Analytics Section */}
+        <WasteAnalytics />
 
         {/* User Persona Section - Compact Card */}
         <section className="max-w-4xl mx-auto">
@@ -172,7 +111,7 @@ export default function Dashboard() {
           >
             <div className="p-8">
               <div className="grid md:grid-cols-4 gap-6 items-center">
-                {/* Image - FIXED */}
+                {/* Image */}
                 <div className="relative">
                   <div className="aspect-square bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl overflow-hidden">
                     <img 
@@ -214,51 +153,24 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* Profile Details and Read More */}
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex space-x-4">
-                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                        28 years old
-                      </span>
-                      <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
-                        Marketing Analyst
-                      </span>
-                    </div>
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowPersonaDialog(true);
-                      }}
-                      className="text-emerald-600 hover:text-emerald-700 font-semibold flex items-center space-x-1"
-                    >
-                      <span>Read her story</span>
-                      <span>→</span>
-                    </button>
+                  <div className="text-center">
+                    <span className="text-emerald-600 text-sm font-medium">Click to learn more about Rouxi's journey →</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          {/* Subtitle */}
-          <div className="text-center mt-6">
-            <p className="text-gray-500 italic">
-              Click above to discover why thousands of Melbourne newcomers need EcoGenius 👆
-            </p>
-          </div>
         </section>
 
-        {/* Mission Section */}
-        <section className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-          <div className="text-center mb-8">
+        {/* About Section */}
+        <section className="bg-white rounded-3xl shadow-xl p-8 md:p-12 text-center">
+          <div className="max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Our Mission
+              About EcoGenius
             </h2>
-          </div>
-          
-          <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
+            
             <p className="text-lg">
-              EcoGenius is a smart digital platform tackling Melbourne’s bulky waste problem by making disposal affordable, clear, and community-driven. Newcomers often face confusing rules and high costs, leading to reusable items ending up in landfill.
+              Melbourne generates millions of tonnes of waste annually, yet many newcomers face confusing rules and high costs, leading to reusable items ending up in landfill.
             </p>
             
             <p className="text-lg">
@@ -456,7 +368,7 @@ export default function Dashboard() {
                       <div>
                         <h4 className="font-semibold text-emerald-800 mb-1">Search Guide</h4>
                         <p className="text-emerald-700">
-                          Clear, Melbourne-specific recycling rules at her fingertips.
+                          Quick reference for thousands of items with clear disposal instructions.
                         </p>
                       </div>
                     </div>
@@ -468,23 +380,12 @@ export default function Dashboard() {
                       <div>
                         <h4 className="font-semibold text-emerald-800 mb-1">Community Exchange</h4>
                         <p className="text-emerald-700">
-                          Share disposal costs and give away items to neighbors.
+                          Share removal costs, give away unwanted items, and connect with neighbours.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Why EcoGenius Exists */}
-              <div className="bg-gradient-to-r from-orange-50 to-emerald-50 border border-emerald-100 rounded-2xl p-6">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center text-xl">
-                  <span className="text-orange-500 mr-2">🎯</span>
-                  Why EcoGenius Exists
-                </h3>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  Rouxi's story reflects the struggles of thousands of Melbourne's newcomers. EcoGenius was built to give people like her instant AI-driven disposal advice, affordable cost-sharing options, and community support—so smart, sustainable choices are always within reach.
-                </p>
               </div>
             </div>
           </div>
