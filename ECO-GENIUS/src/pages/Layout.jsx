@@ -5,7 +5,8 @@ import {
   Search,
   Leaf,
   Users,
-  LayoutDashboard
+  LayoutDashboard,
+  BarChart3
 } from "lucide-react";
 
 export default function Layout({ children, currentPageName }) {
@@ -35,6 +36,12 @@ export default function Layout({ children, currentPageName }) {
       url: "/Community",
       icon: Users,
       color: "text-purple-600"
+    },
+    {
+      title: "Data Analytics",
+      url: "/Visualization",
+      icon: BarChart3,
+      color: "text-orange-600"
     }
   ];
 
@@ -87,7 +94,7 @@ export default function Layout({ children, currentPageName }) {
 
       {/* Mobile Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50">
-        <div className="grid grid-cols-4 py-2">
+        <div className="grid grid-cols-5 py-2">
           {navigationItems.map((item) => (
             <Link
               key={item.title}
@@ -100,7 +107,7 @@ export default function Layout({ children, currentPageName }) {
             >
               <item.icon className="w-5 h-5" />
               <span className="text-xs font-medium truncate max-w-full">
-                {item.title.replace("EcoGenius ", "")}
+                {item.title.replace("EcoGenius ", "").replace("Data ", "")}
               </span>
             </Link>
           ))}
