@@ -32,8 +32,8 @@ export default function Layout({ children, currentPageName }) {
       color: "text-indigo-600"
     },
     {
-      title: "Community",
-      url: "/Community",
+      title: "Billboard",
+      url: "/Billboard",
       icon: Users,
       color: "text-purple-600"
     },

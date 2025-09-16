@@ -15,8 +15,8 @@ export default function Dashboard() {
     navigate("/SearchGuide");
   };
 
-  const handleNavigateToCommunity = () => {
-    navigate("/Community");
+  const handleNavigateToBillboard = () => {
+    navigate("/Billboard");
   };
 
   const handleNavigateToDataAnalytics = () => {
@@ -163,15 +163,15 @@ export default function Dashboard() {
               <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
                 <Users className="w-8 h-8 text-emerald-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Community Exchange</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Waste Billboard</h3>
               <p className="text-gray-600 mb-6">
-                Give away unwanted items or share removal costs with your neighbours.
+                Upload and share reusable kerbside items with neighbours.
               </p>
               <button 
-                onClick={handleNavigateToCommunity}
+                onClick={handleNavigateToBillboard}
                 className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
               >
-                Explore Community
+                Explore Billboard
               </button>
             </div>
           </div>
