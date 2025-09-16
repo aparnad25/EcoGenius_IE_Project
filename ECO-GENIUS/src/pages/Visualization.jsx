@@ -46,7 +46,7 @@ export default function Visualization() {
 
       // Load detailed waste data from public folder using fetch
       try {
-        const wasteDetailResponse = await fetch('/VictoriaWastev2025.1_clean.csv');
+        const wasteDetailResponse = await fetch('/Victoria-Waste-v2025.1_clean.csv');
         if (!wasteDetailResponse.ok) {
           throw new Error(`HTTP error! status: ${wasteDetailResponse.status}`);
         }
@@ -55,8 +55,8 @@ export default function Visualization() {
         setWasteByMaterialData(wasteDetailParsed);
         console.log('Detailed waste data loaded from CSV:', wasteDetailParsed.length, 'rows');
       } catch (err) {
-        console.error('Failed to load detailed waste data from /VictoriaWastev2025.1_clean.csv:', err);
-        setError('Cannot load detailed waste data. Please ensure VictoriaWastev2025.1_clean.csv is in the public/ folder and accessible.');
+        console.error('Failed to load detailed waste data from /Victoria-Waste-v2025.1_clean.csv:', err);
+        setError('Cannot load detailed waste data. Please ensure Victoria-Waste-v2025.1_clean.csv is in the public/ folder and accessible.');
       }
 
     } catch (error) {
@@ -305,16 +305,22 @@ export default function Visualization() {
       return;
     }
 
-    // Process data like in epic3.py
-    const sectorData = {};
+    console.log('Processing recovery rate data...', wasteByMaterialData.slice(0, 3));
+
+    // Process data exactly like in epic3.py
+    const sectorAggregations = {};
     
     wasteByMaterialData.forEach(row => {
       const year = row['Financial Year'];
       const sector = row['Source Sector'];
+      
+      // Skip invalid rows
+      if (!year || !sector) return;
+      
       const key = `${year}-${sector}`;
       
-      if (!sectorData[key]) {
-        sectorData[key] = {
+      if (!sectorAggregations[key]) {
+        sectorAggregations[key] = {
           year,
           sector,
           totalGeneration: 0,
@@ -324,48 +330,77 @@ export default function Visualization() {
         };
       }
       
-      sectorData[key].totalGeneration += row['Total Generation'] || 0;
-      sectorData[key].disposal += row['Disposal'] || 0;
-      sectorData[key].recovered += row['Recoverd locally (including Waste to Energy)'] || 0;
-      sectorData[key].exports += (row['International Export'] || 0) + (row['Interstate Export'] || 0);
+      // Safely add values, treating null/undefined as 0
+      sectorAggregations[key].totalGeneration += parseFloat(row['Total Generation'] || 0);
+      sectorAggregations[key].disposal += parseFloat(row['Disposal'] || 0);
+      sectorAggregations[key].recovered += parseFloat(row['Recoverd locally (including Waste to Energy)'] || 0);
+      
+      // Calculate exports (International + Interstate)
+      const intlExport = parseFloat(row['International Export'] || 0);
+      const interstateExport = parseFloat(row['Interstate Export'] || 0);
+      sectorAggregations[key].exports += intlExport + interstateExport;
     });
 
-    // Calculate recovery rates by sector
-    const processedSectorData = Object.values(sectorData).map(d => ({
-      ...d,
-      recoveryRate: d.totalGeneration > 0 ? ((d.recovered + d.exports) / d.totalGeneration * 100) : 0
-    }));
+    console.log('Sector aggregations:', Object.values(sectorAggregations).slice(0, 5));
 
-    // Group by sector
-    const sectors = ['CND', 'CNI', 'MSW'];
-    const sectorNames = {
+    // Calculate recovery rates
+    const processedSectorData = Object.values(sectorAggregations)
+      .map(d => ({
+        ...d,
+        recoveryRate: d.totalGeneration > 0 
+          ? ((d.recovered + d.exports) / d.totalGeneration * 100) 
+          : 0
+      }))
+      .filter(d => d.recoveryRate >= 0 && d.recoveryRate <= 100); // Filter out invalid rates
+
+    console.log('Processed sector data:', processedSectorData.slice(0, 5));
+
+    // Define sectors and their display names (from epic3.py)
+    const sectorMapping = {
       'CND': 'Construction & Demolition',
       'CNI': 'Commercial & Industrial', 
       'MSW': 'Municipal Solid Waste'
     };
+    
     const colors = {
       'CND': '#1f77b4',
       'CNI': '#ff7f0e',
       'MSW': '#2ca02c'
     };
 
-    const data = sectors.map(sector => {
-      const sectorRows = processedSectorData.filter(d => d.sector === sector);
-      const years = [...new Set(sectorRows.map(d => d.year))].sort();
-      const recoveryRates = years.map(year => {
-        const yearData = sectorRows.find(d => d.year === year);
-        return yearData ? yearData.recoveryRate : 0;
-      });
+    // Group data by sector and create traces
+    const data = Object.keys(sectorMapping).map(sectorCode => {
+      const sectorData = processedSectorData.filter(d => d.sector === sectorCode);
+      
+      if (sectorData.length === 0) {
+        console.warn(`No data found for sector: ${sectorCode}`);
+        return null;
+      }
+      
+      // Sort by year for proper line connection
+      sectorData.sort((a, b) => a.year.localeCompare(b.year));
+      
+      const years = sectorData.map(d => d.year);
+      const recoveryRates = sectorData.map(d => d.recoveryRate);
+      
+      console.log(`${sectorCode} data:`, { years, recoveryRates });
 
       return {
         x: years,
         y: recoveryRates,
         mode: 'lines+markers',
-        name: sectorNames[sector] || sector,
-        line: { color: colors[sector] },
-        type: 'scatter'
+        name: sectorMapping[sectorCode],
+        line: { color: colors[sectorCode] },
+        marker: { size: 6 },
+        type: 'scatter',
+        hovertemplate: '%{fullData.name}<br>Year: %{x}<br>Recovery Rate: %{y:.1f}%<extra></extra>'
       };
-    });
+    }).filter(trace => trace !== null); // Remove null traces
+
+    if (data.length === 0) {
+      setError('No valid recovery rate data found. Check that the CSV contains the required columns: Financial Year, Source Sector, Total Generation, Disposal, etc.');
+      return;
+    }
 
     const layout = {
       title: {
@@ -385,7 +420,14 @@ export default function Visualization() {
       hovermode: 'x unified',
       template: 'plotly_white',
       height: 600,
-      margin: { l: 80, r: 80, t: 80, b: 100 }
+      margin: { l: 80, r: 80, t: 80, b: 100 },
+      legend: {
+        x: 0.02,
+        y: 0.98,
+        bgcolor: 'rgba(255,255,255,0.8)',
+        bordercolor: '#e5e5e5',
+        borderwidth: 1
+      }
     };
 
     const config = { responsive: true, displayModeBar: true };
@@ -546,7 +588,7 @@ export default function Visualization() {
                     <ul className="list-disc list-inside space-y-1 pl-4">
                       <li><code>public/vic_nom_last5.csv</code> (for migrant_vis.py visualization)</li>
                       <li><code>public/Merged_vic_waste_summary.csv</code> (for epic3.py visualization 1)</li>
-                      <li><code>public/VictoriaWastev2025.1_clean.csv</code> (for epic3.py visualization 3)</li>
+                      <li><code>public/Victoria-Waste-v2025.1_clean.csv</code> (for epic3.py visualization 3)</li>
                     </ul>
                     <p className="mt-3">
                       <strong>Note:</strong> This React component replicates the exact visualizations from your Python files 
