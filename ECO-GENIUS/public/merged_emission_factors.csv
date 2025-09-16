@@ -1,0 +1,10 @@
+Waste type (unified),Proportion (share),Scope 3 EF (t CO2-e/t),Volume-to-mass (t/m3),Weighted EF (t CO2-e)
+Food,0.35,2.1,0.5,
+Other,0.28,-,0.42,0.0308
+Garden and Green,0.165,1.6,0.24,
+Paper,0.13,3.3,0.09,0.0022
+Nappies,0.04,2,0.39,0.0103
+Textiles,0.015,2,0.14,0.0055
+Wood ,0.01,0.7,0.15,
+Rubber and Leather,0.01,3.3,0.14,0.0049
+Sludge,0,0.4,0.72,

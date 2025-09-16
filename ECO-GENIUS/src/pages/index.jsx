@@ -3,6 +3,7 @@ import Layout from "./Layout.jsx";
 import Dashboard from "./Dashboard";
 import ScanItem from "./ScanItem";
 import SearchGuide from "./SearchGuide";
+import Visualization from "./Visualization"; // Add this import
 import CommunityList from "./billboard/Billboard.jsx";
 import NewPost from "./billboard/NewPost.jsx";
 import PostDetail from "./billboard/PostDetail.jsx";
@@ -14,6 +15,7 @@ const PAGES = {
     ScanItem: ScanItem,
     SearchGuide: SearchGuide,
     Community: CommunityList,
+    Visualization: Visualization, // Add this line
 }
 
 function _getCurrentPage(url) {
@@ -42,6 +44,7 @@ function PagesContent() {
                 <Route path="/ScanItem" element={<ScanItem />} />
                 <Route path="/SearchGuide" element={<SearchGuide />} />
                 <Route path="/Community" element={<CommunityList />} />
+                <Route path="/Visualization" element={<Visualization />} /> {/* Add this route */}
                 <Route path="/posts/new" element={<NewPost />} />
                 <Route path="/posts/:postId" element={<PostDetail />} />
             </Routes>
