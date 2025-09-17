@@ -8,9 +8,30 @@ export default function Pages() {
   return (
     <Router>
       <Routes>
-        <Route path="/billboard" element={<Layout><Billboard /></Layout>} />
-        <Route path="/posts/new" element={<Layout><NewPost /></Layout>} />
-        <Route path="/posts/:postId" element={<Layout><PostDetail /></Layout>} />
+        <Route
+          path="/billboard"
+          element={
+            <Layout>
+              <Billboard />
+            </Layout>
+          }
+        />
+        <Route
+          path="/billboard/posts/new"
+          element={
+            <Layout>
+              <NewPost />
+            </Layout>
+          }
+        />
+        <Route
+          path="/billboard/posts/:postId"
+          element={
+            <Layout>
+              <PostDetail />
+            </Layout>
+          }
+        />
       </Routes>
     </Router>
   );

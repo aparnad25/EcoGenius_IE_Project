@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
-import { 
+import {
   Scan,
   Search,
   Leaf,
   Users,
   LayoutDashboard,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 
 export default function Layout({ children, currentPageName }) {
@@ -15,34 +15,34 @@ export default function Layout({ children, currentPageName }) {
   const navigationItems = [
     {
       title: "Dashboard",
-      url: "/Dashboard",
+      url: "/dashboard",
       icon: LayoutDashboard,
-      color: "text-blue-600"
+      color: "text-blue-600",
     },
     {
       title: "EcoGenius AI Lens",
-      url: "/",
+      url: "/scanner",
       icon: Scan,
-      color: "text-emerald-600"
+      color: "text-emerald-600",
     },
     {
       title: "Search Guide",
-      url: "/SearchGuide",
+      url: "/searchguide",
       icon: Search,
-      color: "text-indigo-600"
+      color: "text-indigo-600",
     },
     {
       title: "Billboard",
-      url: "/Billboard",
+      url: "/billboard",
       icon: Users,
-      color: "text-purple-600"
+      color: "text-purple-600",
     },
     {
       title: "Data Analytics",
-      url: "/Visualization",
+      url: "/visualization",
       icon: BarChart3,
-      color: "text-orange-600"
-    }
+      color: "text-orange-600",
+    },
   ];
 
   return (
@@ -71,7 +71,10 @@ export default function Layout({ children, currentPageName }) {
                   key={item.title}
                   to={item.url}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    location.pathname === item.url
+                    // Highlight navbar item if current path starts with the item's URL, including subroutes
+                    location.pathname
+                      .toLowerCase()
+                      .startsWith(item.url.toLowerCase())
                       ? `bg-emerald-100 ${item.color}`
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   }`}
@@ -81,16 +84,12 @@ export default function Layout({ children, currentPageName }) {
                 </Link>
               ))}
             </nav>
-
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
-        {children} 
-        
-      </main>
+      <main className="flex-1">{children}</main>
 
       {/* Mobile Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50">
@@ -100,7 +99,10 @@ export default function Layout({ children, currentPageName }) {
               key={item.title}
               to={item.url}
               className={`flex flex-col items-center space-y-1 p-3 rounded-xl transition-all duration-200 ${
-                location.pathname === item.url
+                // Highlight navbar item if current path starts with the item's URL, including subroutes
+                location.pathname
+                  .toLowerCase()
+                  .startsWith(item.url.toLowerCase())
                   ? `${item.color} bg-emerald-50`
                   : "text-gray-400 hover:text-gray-600"
               }`}

@@ -4,7 +4,7 @@ import PostCard from "../../components/billboard/PostCard.jsx";
 import { Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Community() {
+export default function Billboard() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,11 +28,14 @@ export default function Community() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Community</h1>
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Billboard</h1>
+        <p className="text-lg text-gray-600">
+          Share and discover reusable kerbside items in your neighbourhood
+        </p>
         <button
-          onClick={() => navigate("/posts/new")}
-          className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition"
+          onClick={() => navigate("/billboard/posts/new")}
+          className="mt-4 px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition"
         >
           + Create Post
         </button>
@@ -59,7 +62,7 @@ export default function Community() {
 
       <div className="grid md:grid-cols-2 gap-6">
         {posts.map((post) => (
-          <Link key={post.id} to={`/posts/${post.id}`}>
+          <Link key={post.id} to={`/billboard/posts/${post.id}`}>
             <PostCard post={post} />
           </Link>
         ))}

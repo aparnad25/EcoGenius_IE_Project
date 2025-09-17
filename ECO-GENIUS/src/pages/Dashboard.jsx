@@ -8,7 +8,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const handleNavigateToAILens = () => {
-    navigate("/"); // Assuming AI Lens is at root path
+    navigate("/Scanner"); // Assuming AI Lens is at root path
   };
 
   const handleNavigateToSearchGuide = () => {
