@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getPostDetail, createResponse, getResponses } from "../../api/billboardApi";
+import {
+  getPostDetail,
+  createResponse,
+  getResponses,
+} from "../../api/billboardApi";
 import { Loader2 } from "lucide-react";
 import {
   Card,
@@ -100,7 +104,7 @@ export default function PostDetail() {
         </CardHeader>
 
         <CardContent>
-          {/* category + nickname 标签 */}
+          {/* category + nickname tags */}
           <div className="flex gap-3 mb-4">
             <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
               {post.category}
@@ -109,6 +113,17 @@ export default function PostDetail() {
               By {post.nickname}
             </span>
           </div>
+
+          {/* Image */}
+          {post.image_url && (
+            <div className="mb-4 flex justify-center">
+              <img
+                src={post.image_url}
+                alt={post.title}
+                className="max-h-96 rounded-lg shadow object-contain"
+              />
+            </div>
+          )}
 
           {/* description */}
           <p className="text-gray-700 mb-4">{post.description}</p>
