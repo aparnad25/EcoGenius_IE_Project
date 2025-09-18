@@ -3,6 +3,7 @@ import { getPosts } from "../../api/billboardApi.js";
 import PostCard from "../../components/billboard/PostCard.jsx";
 import { Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Billboard() {
   const [posts, setPosts] = useState([]);
@@ -33,12 +34,14 @@ export default function Billboard() {
         <p className="text-lg text-gray-600">
           Share and discover reusable kerbside items in your neighbourhood
         </p>
-        <button
-          onClick={() => navigate("/billboard/posts/new")}
-          className="mt-4 px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition"
-        >
-          + Create Post
-        </button>
+        <div className="flex justify-end mt-4">
+          <button
+            onClick={() => navigate("/billboard/posts/new")}
+            className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition"
+          >
+            + Create Post
+          </button>
+        </div>
       </div>
 
       {loading && (
