@@ -12,8 +12,19 @@ import {
   CardTitle,
 } from "../../components/ui/card";
 import { Eye } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+} from "../../components/ui/alert-dialog";
 
 export default function NewPost() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -27,6 +38,8 @@ export default function NewPost() {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [alertOpen, setAlertOpen] = useState(false); // control alert
+  const [newPostId, setNewPostId] = useState(null); // store new post id
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
@@ -74,24 +87,18 @@ export default function NewPost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
 
     try {
       const res = await createPost(form);
-      setMessage(`✅ Post created! ID: ${res.id}`);
-      setForm({
-        title: "",
-        description: "",
-        image_url: "",
-        street_name: "",
-        suburb: "",
-        postcode: "",
-        category: "Appliance",
-        nickname: "",
-      });
+      setNewPostId(res.id);
+      setAlertOpen(true);
+      // 5 seconds delay before redirect
+      setTimeout(() => {
+        navigate(`/billboard/posts/${res.id}`);
+      }, 5000);
     } catch (err) {
       console.error(err);
-      setMessage("❌ Failed to create post");
+      alert("❌ Failed to create post");
     } finally {
       setLoading(false);
     }
@@ -255,6 +262,23 @@ export default function NewPost() {
       )}
 
       {message && <p className="mt-4">{message}</p>}
+
+      <AlertDialog open={alertOpen} onOpenChange={setAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>✅ Post Created</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your post has been created successfully!
+              {newPostId && <p>Post ID: {newPostId}</p>}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => navigate(`/billboard/posts/${newPostId}`)}>
+              View Post
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
