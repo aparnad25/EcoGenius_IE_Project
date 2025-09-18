@@ -4,12 +4,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // get all posts
 export async function getPosts() {
+  console.log("API_BASE_URL:", API_BASE_URL);
   const res = await fetch(`${API_BASE_URL}/posts`, {
     method: "GET",
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
   }
+  
   return res.json();
 }
 

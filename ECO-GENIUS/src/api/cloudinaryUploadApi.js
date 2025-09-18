@@ -1,7 +1,7 @@
 // src/services/cloudinaryUploadApi.js
 
 const LOCAL_API = "http://localhost:3001/api";  // LOCAL Express/Node server
-const DEV_API = "https://c2dtf2y4f8.execute-api.ap-southeast-2.amazonaws.com/dev";
+const DEV_API = import.meta.env.VITE_API_BASE_URL;
 
 const API_BASE_URL = import.meta.env.MODE === "development" ? LOCAL_API : DEV_API;
 
