@@ -628,16 +628,26 @@ export default function Visualization() {
           {activeChart === 'waste-flows' && (
             <div className="space-y-4">
               <p className="text-gray-700">
-                <strong>Python Integration:</strong> This chart replicates Visualization 1 from <code>epic3.py</code>, 
-                displaying Victoria's annual waste flows in thousand tonnes.
+                <strong>Total Generation Trends:</strong> Total waste generation rose sharply from 2015–2016 until 2019–2020, 
+                peaking at over 15,000k tonnes, before stabilising and slightly declining in recent years.
               </p>
               <p className="text-gray-700">
-                <strong>Waste Generation:</strong> Victoria's total waste generation shows an upward trend, with significant portions 
-                being recovered locally and exported for processing.
+                <strong>Disposal Patterns:</strong> Disposal (landfill) has remained relatively stable, around 4,000–5,000k tonnes annually, 
+                showing limited reduction despite higher recycling efforts.
               </p>
               <p className="text-gray-700">
-                <strong>Recovery Trends:</strong> Local recovery capacity has been growing, reducing reliance on interstate exports 
-                and landfill disposal.
+                <strong>Recovery Performance:</strong> Recovery (local recycling and Waste to Energy) improved significantly from 2015–2016 
+                to 2020–2021, but has fluctuated since, suggesting pressures in recycling capacity.
+              </p>
+              <p className="text-gray-700">
+                <strong>Export Strategy:</strong> Exports have stayed low, showing Victoria is largely managing waste locally 
+                rather than sending it overseas.
+              </p>
+              <p className="text-gray-700">
+                <strong>EcoGenius Impact:</strong> Although recycling capacity has grown, the amount of waste going to landfill hasn't 
+                decreased meaningfully. This signals the importance of better household waste practices, especially as Melbourne's 
+                population grows. EcoGenius can directly support new migrants by guiding them in proper bulky waste and household recycling, 
+                helping reduce the share of waste ending up in landfill.
               </p>
             </div>
           )}
@@ -645,16 +655,24 @@ export default function Visualization() {
           {activeChart === 'recovery-rate' && (
             <div className="space-y-4">
               <p className="text-gray-700">
-                <strong>Python Integration:</strong> This chart replicates Visualization 3 from <code>epic3.py</code>, 
-                showing recovery rate trends by source sector over time.
+                <strong>Construction & Demolition:</strong> Consistently shows the highest recovery rate, staying above 80% across the years. 
+                This suggests that recycling and reuse practices in the building sector are relatively well established.
               </p>
               <p className="text-gray-700">
-                <strong>Sector Performance:</strong> Construction & Demolition waste shows the highest recovery rates, 
-                while Municipal Solid Waste faces ongoing challenges in recovery optimization.
+                <strong>Commercial & Industrial:</strong> Has seen a gradual decline in recovery, dropping from around 65% to just above 55%. 
+                This indicates challenges in maintaining recycling performance in businesses.
               </p>
               <p className="text-gray-700">
-                <strong>Improvement Opportunities:</strong> Commercial & Industrial waste recovery rates show potential 
-                for improvement through better sorting and processing infrastructure.
+                <strong>Municipal Solid Waste:</strong> Has shown a slow but steady improvement, rising from around 40% to over 60%. 
+                This reflects growing efforts in household recycling, but also highlights that households still lag behind construction.
+              </p>
+              <p className="text-gray-700">
+                <strong>Migration & Recovery Opportunities:</strong> While households are improving, they still generate the most visible 
+                waste streams for everyday residents. Migrants and newcomers can play a role in lifting household recovery rates further.
+              </p>
+              <p className="text-gray-700">
+                <strong>EcoGenius Value:</strong> This chart highlights why EcoGenius is valuable — helping new residents quickly adapt 
+                to local recycling rules can further raise household recovery rates and reduce landfill dependence.
               </p>
             </div>
           )}
