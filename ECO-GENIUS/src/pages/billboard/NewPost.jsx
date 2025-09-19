@@ -12,7 +12,7 @@ import {
 } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
-import { Badge } from "../../components/ui/badge";
+import { ToastAction } from "../../components/ui/toast";
 import { Label } from "../../components/ui/label";
 import {
   Select,
@@ -66,10 +66,7 @@ export default function NewPost() {
           title: "❌ Image upload failed",
           description: error?.message || String(error),
           variant: "destructive",
-          action: {
-            label: "Dismiss",
-            onClick: (toastId) => toast.dismiss(toastId),
-          },
+          action: <ToastAction altText="Dismiss">Dismiss</ToastAction>,
         });
       }
     }
@@ -87,10 +84,7 @@ export default function NewPost() {
         title: "❌ Image upload failed",
         description: error?.message || String(error),
         variant: "destructive",
-        action: {
-          label: "Dismiss",
-          onClick: (toastId) => toast.dismiss(toastId),
-        },
+        action: <ToastAction altText="Dismiss">Dismiss</ToastAction>,
       });
     }
   };
