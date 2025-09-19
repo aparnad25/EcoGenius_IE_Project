@@ -1,30 +1,33 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { createPost } from "../../api/billboardApi";
 import { Button } from "../../components/ui/button";
-import { Camera, Upload } from "lucide-react";
+import { Camera, Upload, Eye } from "lucide-react";
 import CameraCapture from "../../components/scan/CameraCapture";
 import { uploadFileToLambda } from "../../api/cloudinaryUploadApi";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-import { Eye } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
+import { ToastAction } from "../../components/ui/toast";
+import { Label } from "../../components/ui/label";
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogAction,
-} from "../../components/ui/alert-dialog";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "../../components/ui/use-toast";
 
 export default function NewPost() {
   const navigate = useNavigate();
+  const { toast } = useToast();
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -37,9 +40,6 @@ export default function NewPost() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [alertOpen, setAlertOpen] = useState(false); // control alert
-  const [newPostId, setNewPostId] = useState(null); // store new post id
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
@@ -61,8 +61,13 @@ export default function NewPost() {
       try {
         const res = await uploadFileToLambda(file);
         setForm((prev) => ({ ...prev, image_url: res.secure_url }));
-      } catch (err) {
-        setMessage("❌ Image upload failed");
+      } catch (error) {
+        toast({
+          title: "❌ Image upload failed",
+          description: error?.message || String(error),
+          variant: "destructive",
+          action: <ToastAction altText="Dismiss">Dismiss</ToastAction>,
+        });
       }
     }
   };
@@ -74,8 +79,13 @@ export default function NewPost() {
     try {
       const res = await uploadFileToLambda(file);
       setForm((prev) => ({ ...prev, image_url: res.secure_url }));
-    } catch (err) {
-      setMessage("❌ Image upload failed");
+    } catch (error) {
+      toast({
+        title: "❌ Image upload failed",
+        description: error?.message || String(error),
+        variant: "destructive",
+        action: <ToastAction altText="Dismiss">Dismiss</ToastAction>,
+      });
     }
   };
 
@@ -90,15 +100,20 @@ export default function NewPost() {
 
     try {
       const res = await createPost(form);
-      setNewPostId(res.id);
-      setAlertOpen(true);
-      // 5 seconds delay before redirect
+
+      toast({
+        title: "✅ Post Created",
+        description: `Redirecting to your post...`,
+      });
+
       setTimeout(() => {
         navigate(`/billboard/posts/${res.id}`);
-      }, 5000);
-    } catch (err) {
-      console.error(err);
-      alert("❌ Failed to create post");
+      }, 2000);
+    } catch {
+      toast({
+        title: "❌ Failed to create post",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -114,77 +129,93 @@ export default function NewPost() {
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 bg-white p-6 rounded-xl shadow"
+        className="space-y-6 bg-white p-6 rounded-xl shadow"
       >
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={form.title}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
+        <div>
+          <Label htmlFor="title">Title</Label>
+          <Input
+            id="title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={form.description}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          rows="4"
-        />
+        <div>
+          <Label htmlFor="description">Description</Label>
+          <Textarea
+            id="description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            rows={4}
+          />
+        </div>
 
-        <input
-          type="text"
-          name="street_name"
-          placeholder="Street Name (required)"
-          value={form.street_name}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
+        <div>
+          <Label htmlFor="street_name">Street Name</Label>
+          <Input
+            id="street_name"
+            name="street_name"
+            value={form.street_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          name="suburb"
-          placeholder="Suburb"
-          value={form.suburb}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="suburb">Suburb</Label>
+            <Input
+              id="suburb"
+              name="suburb"
+              value={form.suburb}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <Label htmlFor="postcode">Postcode</Label>
+            <Input
+              id="postcode"
+              name="postcode"
+              value={form.postcode}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
 
-        <input
-          type="text"
-          name="postcode"
-          placeholder="Postcode"
-          value={form.postcode}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        />
+        <div>
+          <Label htmlFor="nickname">Nickname</Label>
+          <Input
+            id="nickname"
+            name="nickname"
+            value={form.nickname}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          name="nickname"
-          placeholder="Nickname (required)"
-          value={form.nickname}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
+        <div>
+          <Label htmlFor="category">Category</Label>
+          <Select
+            value={form.category}
+            onValueChange={(value) =>
+              setForm((prev) => ({ ...prev, category: value }))
+            }
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Choose a category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Appliance">Appliance</SelectItem>
+              <SelectItem value="Furniture">Furniture</SelectItem>
+              <SelectItem value="Others">Others</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-        <select
-          name="category"
-          value={form.category}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        >
-          <option value="Appliance">Appliance</option>
-          <option value="Furniture">Furniture</option>
-          <option value="Others">Others</option>
-        </select>
-
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4">
           <Button
             type="button"
             variant="outline"
@@ -230,55 +261,45 @@ export default function NewPost() {
           </CardHeader>
           <CardContent>
             <div className="text-center">
-              <div className="relative inline-block mb-6">
-                <img
-                  src={previewUrl}
-                  alt="Preview"
-                  className="max-w-full h-64 object-cover rounded-lg shadow-md"
-                />
-              </div>
-              <div className="flex justify-center">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setSelectedFile(null);
-                    setPreviewUrl(null);
-                    setForm((prev) => ({ ...prev, image_url: "" }));
-                  }}
-                >
-                  Remove Photo
-                </Button>
-              </div>
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="block mx-auto h-64 object-contain rounded-lg shadow-md mb-4"
+              />
+
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSelectedFile(null);
+                  setPreviewUrl(null);
+                  setForm((prev) => ({ ...prev, image_url: "" }));
+                }}
+              >
+                Remove Photo
+              </Button>
             </div>
           </CardContent>
         </Card>
       )}
 
       {showCamera && (
-        <CameraCapture
-          onCapture={handleCameraCapture}
-          onClose={() => setShowCamera(false)}
-        />
+        <div className="mt-6 mb-8">
+          <Card className="shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Camera className="w-5 h-5 text-purple-600" />
+                <span>Camera</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CameraCapture
+                onCapture={handleCameraCapture}
+                onClose={() => setShowCamera(false)}
+              />
+            </CardContent>
+          </Card>
+        </div>
       )}
-
-      {message && <p className="mt-4">{message}</p>}
-
-      <AlertDialog open={alertOpen} onOpenChange={setAlertOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>✅ Post Created</AlertDialogTitle>
-            <AlertDialogDescription>
-              Your post has been created successfully!
-              {newPostId && <p>Post ID: {newPostId}</p>}
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={() => navigate(`/billboard/posts/${newPostId}`)}>
-              View Post
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </div>
   );
 }
