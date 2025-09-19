@@ -61,12 +61,16 @@ export default function NewPost() {
       try {
         const res = await uploadFileToLambda(file);
         setForm((prev) => ({ ...prev, image_url: res.secure_url }));
-      } catch {
-        toast({
-          title: "❌ Image upload failed",
-          variant: "destructive",
-        });
-      }
+      } catch (error) {
+      toast({
+        title: "❌ Image upload failed",
+        description: error?.message || String(error),
+        variant: "destructive",
+        action: {
+          label: "Dismiss",
+          onClick: (toastId) => toast.dismiss(toastId),
+        },
+      });
     }
   };
 
