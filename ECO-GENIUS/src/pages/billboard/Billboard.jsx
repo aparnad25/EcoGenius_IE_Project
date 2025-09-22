@@ -4,12 +4,23 @@ import PostCard from "../../components/billboard/PostCard.jsx";
 import { Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import PostFilters from "../../components/billboard/PostFilters.jsx";
 
 export default function Billboard() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [filters, setFilters] = useState({
+    categories: ["Appliance", "Furniture", "Others"],
+    locations: [],
+  });
+  const filteredPosts = posts.filter(
+    (post) =>
+      filters.categories.includes(post.category) &&
+      (filters.locations.length === 0 ||
+        filters.locations.includes(post.suburb))
+  );
 
   useEffect(() => {
     async function fetchPosts() {
@@ -35,12 +46,18 @@ export default function Billboard() {
           Share and discover reusable kerbside items in your neighbourhood
         </p>
         <div className="flex justify-end mt-4">
+          {/* Create Post button */}
           <button
             onClick={() => navigate("/billboard/posts/new")}
             className="px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition"
           >
             + Create Post
           </button>
+        </div>
+
+        {/* Filter  */}
+        <div className="flex justify-center gap-6">
+          <PostFilters onChange={setFilters} />
         </div>
       </div>
 
@@ -64,7 +81,7 @@ export default function Billboard() {
       )}
 
       <div className="grid md:grid-cols-2 gap-6">
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <Link key={post.id} to={`/billboard/posts/${post.id}`}>
             <PostCard post={post} />
           </Link>
