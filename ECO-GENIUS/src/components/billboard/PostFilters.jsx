@@ -1,4 +1,10 @@
 import { useState } from "react"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function PostFilters({ onChange }) {
   const categories = ["Appliance", "Furniture", "Others"]
@@ -23,20 +29,28 @@ export default function PostFilters({ onChange }) {
   }
 
   return (
-    <div className="flex justify-center gap-3">
+    <div className="flex gap-3">
       {categories.map((cat) => (
-        <button
-          key={cat}
-          onClick={() => toggleCategory(cat)}
-          className={`px-4 py-1 rounded-full text-sm font-medium transition-colors
-            ${
-              selected.includes(cat)
-                ? categoryStyles[cat] // when selected → show category color
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200 border"
-            }`}
-        >
-          {cat}
-        </button>
+        <TooltipProvider key={cat}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => toggleCategory(cat)}
+                className={`px-4 py-1 rounded-full text-sm font-medium transition-colors
+                  ${
+                    selected.includes(cat)
+                      ? categoryStyles[cat]
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200 border"
+                  }`}
+              >
+                {cat}
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top">
+              <p>Click to show/hide {cat} posts</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       ))}
     </div>
   )

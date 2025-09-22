@@ -5,6 +5,12 @@ import { Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PostFilters from "../../components/billboard/PostFilters.jsx";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Billboard() {
   const [posts, setPosts] = useState([]);
@@ -55,8 +61,9 @@ export default function Billboard() {
           </button>
         </div>
 
-        {/* Filter  */}
-        <div className="flex justify-center gap-6">
+        {/* Filter Section */}
+        <div className="flex flex-col items-center gap-2 mt-4">
+          <span className="text-sm text-gray-500">Filter by category:</span>
           <PostFilters onChange={setFilters} />
         </div>
       </div>
