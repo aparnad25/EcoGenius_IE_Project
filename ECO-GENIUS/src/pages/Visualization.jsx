@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { TrendingUp, BarChart3, ArrowLeft, Activity, Users, AlertTriangle, Recycle, Trash2 } from "lucide-react";
+import { TrendingUp, BarChart3, ArrowLeft, Activity, Users, AlertTriangle, Recycle, Trash2, TrendingDown, Search, Lightbulb } from "lucide-react";
 
 export default function Visualization() {
   const [wasteData, setWasteData] = useState([]);
@@ -417,7 +417,7 @@ export default function Visualization() {
               Waste Management Analytics
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Victoria waste management trends and recycling performance analysis
+              Victoria's waste management trends and recycling performance analysis
             </p>
           </div>
         </div>
@@ -500,68 +500,128 @@ export default function Visualization() {
                 
                 {activeChart === 'recovery-rate' && (
                   <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-red-600 mb-2">📊 What Happened</h4>
-                      <p className="text-gray-700">Household recovery rates are consistently lower than commercial and construction sectors.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-red-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                          <TrendingDown className="w-4 h-4 text-red-600" />
+                        </div>
+                        <h4 className="font-semibold text-red-600">What Happened</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Household recovery rates are consistently lower than commercial and construction sectors.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-amber-600 mb-2">🔍 How It Happens</h4>
-                      <p className="text-gray-700">Households face more confusion with recycling rules, fear of penalties, fewer facilities, and weaker incentives compared to businesses.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-amber-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                          <Search className="w-4 h-4 text-amber-600" />
+                        </div>
+                        <h4 className="font-semibold text-amber-600">How It Happens</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Households face more confusion with recycling rules, fear of penalties, fewer facilities, and weaker incentives compared to businesses.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-emerald-600 mb-2">💡 Why EcoGenius</h4>
-                      <p className="text-gray-700">We give newcomers clear, simple recycling guidance so they can catch up with other sectors, reduce mistakes, avoid penalties and boost household recovery.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-emerald-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                          <Lightbulb className="w-4 h-4 text-emerald-600" />
+                        </div>
+                        <h4 className="font-semibold text-emerald-600">Why EcoGenius</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">We give newcomers clear, simple recycling guidance so they can catch up with other sectors, reduce mistakes, avoid penalties and boost household recovery.</p>
                     </div>
                   </div>
                 )}
 
                 {activeChart === 'diversion-rate' && (
                   <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-red-600 mb-2">📊 What Happened</h4>
-                      <p className="text-gray-700">Waste generation keeps growing, and although diversion is improving, landfill levels remain high.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-red-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                          <TrendingDown className="w-4 h-4 text-red-600" />
+                        </div>
+                        <h4 className="font-semibold text-red-600">What Happened</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Waste generation keeps growing, and although diversion is improving, landfill levels remain high.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-amber-600 mb-2">🔍 How It Happens</h4>
-                      <p className="text-gray-700">Population growth drives more waste, while diversion progress is slowed by inconsistent sorting and low household awareness.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-amber-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                          <Search className="w-4 h-4 text-amber-600" />
+                        </div>
+                        <h4 className="font-semibold text-amber-600">How It Happens</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Population growth drives more waste, while diversion progress is slowed by inconsistent sorting and low household awareness.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-emerald-600 mb-2">💡 Why EcoGenius</h4>
-                      <p className="text-gray-700">We empower new migrants to recycle correctly from day one, making small individual actions that add up to a stronger diversion trend.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-emerald-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                          <Lightbulb className="w-4 h-4 text-emerald-600" />
+                        </div>
+                        <h4 className="font-semibold text-emerald-600">Why EcoGenius</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">We empower new migrants to recycle correctly from day one, making small individual actions that add up to a stronger diversion trend.</p>
                     </div>
                   </div>
                 )}
 
                 {activeChart === 'hard-waste' && (
                   <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-red-600 mb-2">📊 What Happened</h4>
-                      <p className="text-gray-700">Most hard waste still ends up in landfill, with recovery rates below 25% in most years.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-red-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                          <TrendingDown className="w-4 h-4 text-red-600" />
+                        </div>
+                        <h4 className="font-semibold text-red-600">What Happened</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Most hard waste still ends up in landfill, with recovery rates below 25% in most years.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-amber-600 mb-2">🔍 How It Happens</h4>
-                      <p className="text-gray-700">Confusing rules, limited drop-off options, and high costs make it easier for residents to send bulky waste to landfill.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-amber-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                          <Search className="w-4 h-4 text-amber-600" />
+                        </div>
+                        <h4 className="font-semibold text-amber-600">How It Happens</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Confusing rules, limited drop-off options, and high costs make it easier for residents to send bulky waste to landfill.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-emerald-600 mb-2">💡 Why EcoGenius</h4>
-                      <p className="text-gray-700">We simplify the process for newcomers by showing exactly how and where to deal with bulky items, so more hard waste is recovered instead of dumped.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-emerald-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                          <Lightbulb className="w-4 h-4 text-emerald-600" />
+                        </div>
+                        <h4 className="font-semibold text-emerald-600">Why EcoGenius</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">We simplify the process for newcomers by showing exactly how and where to deal with bulky items, so more hard waste is recovered instead of dumped.</p>
                     </div>
                   </div>
                 )}
 
                 {activeChart === 'population-recycling' && (
                   <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-red-600 mb-2">📊 What Happened</h4>
-                      <p className="text-gray-700">Victoria&apos;s population keeps rising, but recycling of mixed materials has stagnated or even declined.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-red-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                          <TrendingDown className="w-4 h-4 text-red-600" />
+                        </div>
+                        <h4 className="font-semibold text-red-600">What Happened</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Victoria&apos;s population keeps rising, but recycling of mixed materials has stagnated or even declined.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-amber-600 mb-2">🔍 How It Happens</h4>
-                      <p className="text-gray-700">Growth in households is not matched with stronger recycling habits or infrastructure, especially among new residents unfamiliar with the system.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-amber-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                          <Search className="w-4 h-4 text-amber-600" />
+                        </div>
+                        <h4 className="font-semibold text-amber-600">How It Happens</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">Growth in households is not matched with stronger recycling habits or infrastructure, especially among new residents unfamiliar with the system.</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-emerald-600 mb-2">💡 Why EcoGenius</h4>
-                      <p className="text-gray-700">We connect population growth to sustainability: as newcomers recycle smarter with EcoGenius, Melbourne grows without compromising its environmental goals.</p>
+                    <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-emerald-400">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                          <Lightbulb className="w-4 h-4 text-emerald-600" />
+                        </div>
+                        <h4 className="font-semibold text-emerald-600">Why EcoGenius</h4>
+                      </div>
+                      <p className="text-gray-700 ml-11">We connect population growth to sustainability: as newcomers recycle smarter with EcoGenius, Melbourne grows without compromising its environmental goals.</p>
                     </div>
                   </div>
                 )}
