@@ -38,6 +38,7 @@ const toastVariants = cva(
 );
 
 const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
+  if (!props.open) return null; // Don't render if open = false
   return (
     <div
       ref={ref}
@@ -60,7 +61,7 @@ const ToastAction = React.forwardRef(({ className, ...props }, ref) => (
 ));
 ToastAction.displayName = "ToastAction";
 
-const ToastClose = React.forwardRef(({ className, ...props }, ref) => (
+const ToastClose = React.forwardRef(({ className, onClick, ...props }, ref) => (
   <button
     ref={ref}
     className={cn(
@@ -68,6 +69,11 @@ const ToastClose = React.forwardRef(({ className, ...props }, ref) => (
       className
     )}
     toast-close=""
+    //onClick={onClick}
+    onClick={(e) => {
+      console.log("ToastClose clicked");
+      if (onClick) onClick(e);
+    }}
     {...props}
   >
     <X className="h-4 w-4" />
@@ -85,11 +91,7 @@ const ToastTitle = React.forwardRef(({ className, ...props }, ref) => (
 ToastTitle.displayName = "ToastTitle";
 
 const ToastDescription = React.forwardRef(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-sm opacity-90", className)}
-    {...props}
-  />
+  <div ref={ref} className={cn("text-sm opacity-90", className)} {...props} />
 ));
 ToastDescription.displayName = "ToastDescription";
 
@@ -101,4 +103,4 @@ export {
   ToastDescription,
   ToastClose,
   ToastAction,
-}; 
+};

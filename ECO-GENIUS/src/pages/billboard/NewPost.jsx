@@ -25,6 +25,10 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "../../components/ui/use-toast";
 
 export default function NewPost() {
+  const [suburbError, setSuburbError] = useState("");
+  const [postcodeError, setPostcodeError] = useState("");
+
+  const [streetError, setStreetError] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -38,6 +42,8 @@ export default function NewPost() {
     category: "Appliance",
     nickname: "",
   });
+  const [descError, setDescError] = useState("");
+  const [titleError, setTitleError] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -88,20 +94,77 @@ export default function NewPost() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    if (name === "description" && descError && value.length <= 200) {
+      setDescError("");
+    }
+    if (name === "street_name" && streetError && !/\d/.test(value)) {
+      setStreetError("");
+    }
+  };
+
+  const handleStreetBlur = (e) => {
+    const value = e.target.value;
+    if (!value.trim()) {
+      setStreetError("You need to fill Street name.🙂");
+    } else if (/\d/.test(value)) {
+      setStreetError("Street name cannot contain numbers.");
+    } else {
+      setStreetError("");
+    }
+  };
+
+  const handleDescBlur = (e) => {
+    const value = e.target.value;
+    if (value.length > 200) {
+      setDescError("Description cannot exceed 200 characters.");
+    } else {
+      setDescError("");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+    let hasError = false;
+    // title validation, title can not be empty
+    if (!form.title.trim()) {
+      setTitleError("You need to fill Title.");
+      hasError = true;
+    } else {
+      setTitleError("");
+    }
+    // suburb validation, only letters allowed if provided
+    if (form.suburb.trim()) {
+      if (!/^[A-Za-z]+$/.test(form.suburb)) {
+        setSuburbError("Suburb can only contain letters.");
+        hasError = true;
+      } else {
+        setSuburbError("");
+      }
+    } else {
+      setSuburbError("");
+    }
+    // postcode validation, must be 4 digits if provided
+    if (form.postcode.trim()) {
+      if (!/^\d{4}$/.test(form.postcode)) {
+        setPostcodeError("Postcode must be 4 digits.");
+        hasError = true;
+      } else {
+        setPostcodeError("");
+      }
+    } else {
+      setPostcodeError("");
+    }
+    if (hasError) {
+      setLoading(false);
+      return;
+    }
     try {
       const res = await createPost(form);
-
       toast({
         title: "✅ Post Created",
         description: `Redirecting to your post...`,
       });
-
       setTimeout(() => {
         navigate(`/billboard/posts/${res.id}`);
       }, 2000);
@@ -128,14 +191,16 @@ export default function NewPost() {
         className="space-y-6 bg-white p-6 rounded-xl shadow"
       >
         <div>
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="title">Title*</Label>
           <Input
             id="title"
             name="title"
             value={form.title}
             onChange={handleChange}
-            required
           />
+          {titleError && (
+            <p className="text-red-500 text-sm mt-1">{titleError}</p>
+          )}
         </div>
 
         <div>
@@ -145,19 +210,28 @@ export default function NewPost() {
             name="description"
             value={form.description}
             onChange={handleChange}
+            onBlur={handleDescBlur}
             rows={4}
           />
+          {descError && (
+            <p className="text-red-500 text-sm mt-1">{descError}</p>
+          )}
         </div>
 
         <div>
-          <Label htmlFor="street_name">Street Name</Label>
+          <Label htmlFor="street_name">
+            Street Name* (Please do not put numbers 🙂)
+          </Label>
           <Input
             id="street_name"
             name="street_name"
             value={form.street_name}
             onChange={handleChange}
-            required
+            onBlur={handleStreetBlur}
           />
+          {streetError && (
+            <p className="text-red-500 text-sm mt-1">{streetError}</p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -169,6 +243,9 @@ export default function NewPost() {
               value={form.suburb}
               onChange={handleChange}
             />
+            {suburbError && (
+              <p className="text-red-500 text-sm mt-1">{suburbError}</p>
+            )}
           </div>
           <div>
             <Label htmlFor="postcode">Postcode</Label>
@@ -178,22 +255,24 @@ export default function NewPost() {
               value={form.postcode}
               onChange={handleChange}
             />
+            {postcodeError && (
+              <p className="text-red-500 text-sm mt-1">{postcodeError}</p>
+            )}
           </div>
         </div>
 
         <div>
-          <Label htmlFor="nickname">Nickname</Label>
+          <Label htmlFor="nickname">Alias</Label>
           <Input
             id="nickname"
             name="nickname"
             value={form.nickname}
             onChange={handleChange}
-            required
           />
         </div>
 
         <div>
-          <Label htmlFor="category">Category</Label>
+          <Label htmlFor="category">Category*</Label>
           <Select
             value={form.category}
             onValueChange={(value) =>
