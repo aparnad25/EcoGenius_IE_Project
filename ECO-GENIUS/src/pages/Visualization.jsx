@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { TrendingUp, BarChart3, ArrowLeft, Activity, Users, AlertTriangle, Recycle, Trash2, TrendingDown, Search, Lightbulb } from "lucide-react";
-
+import { Button } from "../components/ui/button";
+import { useNavigate } from "react-router-dom";
 export default function Visualization() {
   const [wasteData, setWasteData] = useState([]);
   const [vlgasData, setVlgasData] = useState([]);
@@ -383,8 +384,9 @@ export default function Visualization() {
     }
   }, [loading, wasteData, vlgasData, activeChart, error, createRecoveryRateChart, createDiversionRateChart, createHardWasteChart, createPopulationRecyclingChart]);
 
+  const navigate = useNavigate();
   const handleBackToDashboard = () => {
-    window.history.back();
+    navigate("/dashboard");
   };
 
   if (loading) {
@@ -404,13 +406,13 @@ export default function Visualization() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         <div className="mb-12">
-          <button 
+          <Button 
             onClick={handleBackToDashboard}
-            className="flex items-center space-x-2 text-emerald-600 hover:text-emerald-700 mb-8 transition-colors group"
+            className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-emerald-600 hover:text-emerald-700 mb-8 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="font-medium">Back to Dashboard</span>
-          </button>
+          </Button>
           
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
