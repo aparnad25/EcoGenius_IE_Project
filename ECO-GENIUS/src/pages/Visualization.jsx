@@ -417,7 +417,7 @@ export default function Visualization() {
               Waste Management Analytics
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Victoria's waste management trends and recycling performance analysis
+              Victoria waste management trends and recycling performance analysis
             </p>
           </div>
         </div>
