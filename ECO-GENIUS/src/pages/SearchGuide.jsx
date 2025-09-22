@@ -160,7 +160,7 @@ export default function SearchGuide() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Recycling Search Guide</h1>
         <p className="text-lg text-gray-600">
-          Find out exactly where your items belong in Melbourne's bin system
+          Find out exactly where your items belong in Melbourne bin system
         </p>
       </div>
 
