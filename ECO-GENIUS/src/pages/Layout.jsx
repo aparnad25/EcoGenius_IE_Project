@@ -1,15 +1,14 @@
-import React from "react";
-import { Link, useLocation, Outlet } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
 import {
   Scan,
   Search,
-  Leaf,
   Users,
   LayoutDashboard,
   BarChart3,
 } from "lucide-react";
 
-export default function Layout({ children, currentPageName }) {
+export default function Layout({ children }) {
   const location = useLocation();
 
   const navigationItems = [
@@ -53,8 +52,12 @@ export default function Layout({ children, currentPageName }) {
           <div className="flex justify-between items-center h-16">
             <Link to="/Dashboard" className="flex items-center space-x-3">
               {/* Logo */}
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Leaf className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/logo.png" 
+                  alt="EcoGenius Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
@@ -121,3 +124,8 @@ export default function Layout({ children, currentPageName }) {
     </div>
   );
 }
+
+// PropTypes validation
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

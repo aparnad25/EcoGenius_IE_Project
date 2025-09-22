@@ -139,9 +139,9 @@ export default function SearchGuide() {
         handleAiSearch(searchTerm);
       } else {
         setAiSearchResult(null);
-        setAiSearchError(null); // Clear any AI errors if local results appear or search term is cleared
+        setAiSearchError(null);
       }
-    }, 500); // Debounce AI search
+    }, 500);
 
     return () => {
       clearTimeout(handler);
@@ -160,7 +160,7 @@ export default function SearchGuide() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Recycling Search Guide</h1>
         <p className="text-lg text-gray-600">
-          Find out exactly where your items belong in Melbourne's bin system
+          Find out exactly where your items belong in Melbourne bin system
         </p>
       </div>
 
@@ -183,10 +183,14 @@ export default function SearchGuide() {
             />
           </div>
 
+          {/* ✅ 修正：点击按钮时直接填入按钮文字 */}
           <CategoryFilter 
             categories={categories}
             selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
+            onCategoryChange={(category) => {
+              setSelectedCategory(category);
+              setSearchTerm(category === "all" ? "" : category);
+            }}
           />
         </CardContent>
       </Card>
