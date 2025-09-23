@@ -168,13 +168,13 @@ export default function PostDetail() {
         <CardContent>
           <form onSubmit={handleReplySubmit} className="space-y-4">
             <div>
-              <Label htmlFor="nickname">Your nickname</Label>
+              <Label htmlFor="nickname">Your alias</Label>
               <Input
                 id="nickname"
                 type="text"
                 value={replyNickname}
                 onChange={(e) => setReplyNickname(e.target.value)}
-                placeholder="Enter your nickname"
+                placeholder="Enter your alias"
                 required
               />
             </div>
