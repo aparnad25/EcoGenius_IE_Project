@@ -47,7 +47,7 @@ export default function Layout({ children }) {
       title: "Council",
       url: "/council",
       icon: FileText,
-      color: "text-orange-600",
+      color: "text-sky-600",
     },
   ];
 
