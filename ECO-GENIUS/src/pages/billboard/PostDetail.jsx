@@ -271,7 +271,6 @@ export default function PostDetail() {
                   onChange={(e) => setReplyNickname(e.target.value)}
                   placeholder="Enter your alias"
                   className="border-2 focus:border-green-600 focus:ring-green-100"
-                  required
                 />
               </div>
 
@@ -286,7 +285,6 @@ export default function PostDetail() {
                   onChange={(e) => setReply(e.target.value)}
                   placeholder="Write your reply..."
                   className="border-2 focus:border-green-600 focus:ring-green-100 resize-none"
-                  required
                 />
               </div>
 
