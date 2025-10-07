@@ -1,4 +1,3 @@
-import React from "react";
 import { Users, Plus, Share2, Heart } from "lucide-react";
 
 
@@ -30,7 +29,7 @@ export default function Community() {
         </h2>
         
         <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          We're building an amazing community feature where you can share items, split disposal costs, and help your neighbors make sustainable choices.
+          We&apos;re building an amazing community feature where you can share items, split disposal costs, and help your neighbors make sustainable choices.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
