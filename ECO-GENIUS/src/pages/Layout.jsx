@@ -6,7 +6,7 @@ import {
   Users,
   LayoutDashboard,
   BarChart3,
-  FileText
+  FileText,
   PawPrint,
 } from "lucide-react";
 
