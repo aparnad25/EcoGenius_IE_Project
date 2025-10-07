@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -6,6 +6,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+export default function PostFilters({ onChange = () => {} }) {
   const categories = ["Appliance", "Furniture", "Others"];
   const suburbs = ["Melbourne", "Carlton", "Docklands", "Richmond", "Other"];
   const [selected, setSelected] = useState(categories);
