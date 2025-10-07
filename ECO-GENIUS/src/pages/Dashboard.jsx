@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Dashboard() {
   const features = [
     {
@@ -97,9 +95,6 @@ export default function Dashboard() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Explore EcoGenius Features
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose a tool below to start making smarter, more sustainable disposal decisions.
-          </p>
         </div>
 
         {/* Feature Cards Grid */}
@@ -108,7 +103,7 @@ export default function Dashboard() {
             <a
               key={index}
               href={feature.link}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:scale-105 hover:-translate-y-2"
             >
               {/* Gradient Header */}
               <div className={`h-32 bg-gradient-to-br ${feature.bgColor} relative overflow-hidden`}>
@@ -125,9 +120,13 @@ export default function Dashboard() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  {feature.description}
-                </p>
+                
+                {/* Description - Hidden by default, shown on hover with smooth height transition */}
+                <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {feature.description}
+                  </p>
+                </div>
                 
                 {/* CTA Button */}
                 <div className="flex items-center text-emerald-600 font-semibold group-hover:text-emerald-700">

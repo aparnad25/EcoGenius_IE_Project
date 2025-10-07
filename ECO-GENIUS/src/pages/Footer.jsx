@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -25,11 +23,12 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeWidth="2" d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path strokeWidth="2" d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/logo.png" 
+                  alt="EcoGenius Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h2 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
@@ -92,7 +91,7 @@ export default function Footer() {
             <a href="/about" className="text-gray-500 hover:text-emerald-600 text-sm transition-colors">
               About Us
             </a>
-            <a href="/" className="text-gray-500 hover:text-emerald-600 text-sm transition-colors">
+            <a href="/home" className="text-gray-500 hover:text-emerald-600 text-sm transition-colors">
               Home
             </a>
           </div>
