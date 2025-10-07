@@ -1,9 +1,11 @@
 import Layout from "./Layout.jsx";
 
+import Home from "./Home";  // 新增
+import About from "./About";  // 新增
 import Dashboard from "./Dashboard";
 import ScanItem from "./ScanItem";
 import SearchGuide from "./SearchGuide";
-import Visualization from "./Visualization"; // Add this import
+import Visualization from "./Visualization";
 import Billboard from "./billboard/Billboard.jsx";
 import NewPost from "./billboard/NewPost.jsx";
 import PostDetail from "./billboard/PostDetail.jsx";
@@ -19,11 +21,13 @@ import {
 } from "react-router-dom";
 
 const PAGES = {
+  Home: Home,  // 新增
+  About: About,  // 新增
   Dashboard: Dashboard,
   ScanItem: ScanItem,
   SearchGuide: SearchGuide,
   Billboard: Billboard,
-  Visualization: Visualization, // Add this line
+  Visualization: Visualization,
 };
 
 function _getCurrentPage(url) {
@@ -38,7 +42,7 @@ function _getCurrentPage(url) {
   const pageName = Object.keys(PAGES).find(
     (page) => page.toLowerCase() === urlLastPart.toLowerCase()
   );
-  return pageName || "Dashboard"; // Default to Dashboard instead of ScanItem
+  return pageName || "Home"; // Default to Home instead of Dashboard
 }
 
 // Create a wrapper component that uses useLocation inside the Router context
@@ -49,17 +53,25 @@ function PagesContent() {
   return (
     <Layout currentPageName={currentPage}>
       <Routes>
-        {/* Redirect root to Dashboard */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        {/* Redirect root to Home */}
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        
+        {/* Main Pages */}
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        
+        {/* Feature Pages */}
         <Route path="/scanner" element={<ScanItem />} />
         <Route path="/searchguide" element={<SearchGuide />} />
-        <Route path="/billboard" element={<Billboard />} />
-        <Route path="/visualization" element={<Visualization />} />{" "}
         <Route path="/petparks" element={<PetParks />} />
+        <Route path="/visualization" element={<Visualization />} />
+        <Route path="/council" element={<CouncilPage />} />
+        
+        {/* Billboard Pages */}
+        <Route path="/billboard" element={<Billboard />} />
         <Route path="/billboard/posts/new" element={<NewPost />} />
         <Route path="/billboard/posts/:postId" element={<PostDetail />} />
-        <Route path="/council" element={<CouncilPage />} />
       </Routes>
     </Layout>
   );
