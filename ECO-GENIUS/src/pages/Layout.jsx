@@ -6,6 +6,7 @@ import {
   Users,
   LayoutDashboard,
   BarChart3,
+  FileText
   PawPrint,
 } from "lucide-react";
 
@@ -48,6 +49,12 @@ export default function Layout({ children }) {
       url: "/visualization",
       icon: BarChart3,
       color: "text-orange-600",
+    },
+    {
+      title: "Council",
+      url: "/council",
+      icon: FileText,
+      color: "text-sky-600",
     },
   ];
 

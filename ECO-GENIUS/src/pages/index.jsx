@@ -7,6 +7,7 @@ import Visualization from "./Visualization"; // Add this import
 import Billboard from "./billboard/Billboard.jsx";
 import NewPost from "./billboard/NewPost.jsx";
 import PostDetail from "./billboard/PostDetail.jsx";
+import CouncilPage from "./Council.jsx";
 import PetParks from "./PetParks.jsx";
 
 import {
@@ -22,8 +23,7 @@ const PAGES = {
   ScanItem: ScanItem,
   SearchGuide: SearchGuide,
   Billboard: Billboard,
-  Visualization: Visualization,
-  PetParks: PetParks,
+  Visualization: Visualization, // Add this line
 };
 
 function _getCurrentPage(url) {
@@ -59,6 +59,7 @@ function PagesContent() {
         <Route path="/petparks" element={<PetParks />} />
         <Route path="/billboard/posts/new" element={<NewPost />} />
         <Route path="/billboard/posts/:postId" element={<PostDetail />} />
+        <Route path="/council" element={<CouncilPage />} />
       </Routes>
     </Layout>
   );
