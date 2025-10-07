@@ -37,7 +37,7 @@ export default function Dashboard() {
             Welcome to EcoGenius
           </h1>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            Helping Melbourne residents dispose smarter, save money, and build stronger communities.
+            Helping residents dispose smarter, save money, and build a sustainable Melbourne.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
@@ -277,7 +277,7 @@ export default function Dashboard() {
           
           <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
             <p className="text-lg">
-              EcoGenius is a smart digital platform tackling Melbourne's bulky waste problem by making disposal affordable, clear, and community-driven. Newcomers often face confusing rules and high costs, leading to reusable items ending up in landfill.
+              EcoGenius is a smart digital platform tackling Melbourne's bulky waste problem by making disposal affordable, clear, and technology-driven. Newcomers often face confusing rules and high costs, leading to reusable items ending up in landfill.
             </p>
             
             <p className="text-lg">

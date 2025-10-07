@@ -196,7 +196,7 @@ export default function NewPost() {
       {/* Page Header */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Create New Post</h1>
-        <p className="text-gray-600">Post kerbside items with the community</p>
+        <p className="text-gray-600">Post kerbside items within the neighborhood</p>
       </div>
 
       {/* Form Container */}
