@@ -16,64 +16,115 @@ export default function PostCard({ post, detailed = false }) {
     }
   };
 
+  // Get placeholder design based on category
+  const getPlaceholder = (category) => {
+    switch (category) {
+      case "Furniture":
+        return {
+          gradient: "from-blue-100 via-blue-50 to-indigo-100",
+          icon: "🛋️",
+          text: "Furniture"
+        };
+      case "Appliance":
+        return {
+          gradient: "from-yellow-100 via-green-50 to-emerald-100",
+          icon: "⚡",
+          text: "Appliance"
+        };
+      case "Others":
+        return {
+          gradient: "from-purple-100 via-pink-50 to-purple-100",
+          icon: "📦",
+          text: "Others"
+        };
+      default:
+        return {
+          gradient: "from-gray-100 via-gray-50 to-gray-100",
+          icon: "📦",
+          text: "Item"
+        };
+    }
+  };
+
+  // Format author name - show "Anonymous" if no nickname
+  const displayName = post.nickname || post.author || "Anonymous";
+
+  // Format location string
+  const formatLocation = () => {
+    const parts = [];
+    if (post.street_name) parts.push(post.street_name);
+    if (post.suburb) parts.push(post.suburb);
+    if (post.postcode) parts.push(post.postcode);
+    return parts.length > 0 ? parts.join(", ") : "Location not specified";
+  };
+
   return (
-    <Card className="rounded-2xl shadow-md hover:shadow-lg transition p-4">
-      {/* image */}
+    <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden h-full flex flex-col">
+      {/* Image Section */}
       {post.image_url ? (
         <img
           src={
             Array.isArray(post.image_url) ? post.image_url[0] : post.image_url
           }
           alt={post.title}
-          className="w-full h-48 object-cover rounded-xl mb-4"
+          className="w-full h-48 object-cover"
         />
       ) : (
-        <div className="w-full h-48 bg-gray-100 flex items-center justify-center rounded-xl mb-4">
-          <span className="text-gray-400 text-sm">No Image</span>
+        <div className={`w-full h-48 bg-gradient-to-br ${getPlaceholder(post.category).gradient} flex flex-col items-center justify-center gap-2`}>
+          <span className="text-6xl opacity-40">{getPlaceholder(post.category).icon}</span>
+          <span className="text-gray-400 text-xs font-medium">{getPlaceholder(post.category).text}</span>
         </div>
       )}
 
-      <CardContent>
-        {/* title */}
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">
-          {post.title}
-        </h2>
-
-        {/* category + nickname */}
-        <div className="flex flex-wrap items-center text-sm text-gray-600 mb-3 gap-2">
+      <CardContent className="p-5 flex-1 flex flex-col">
+        {/* Category Badge */}
+        <div className="mb-3">
           <span
-            className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryClasses(
+            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${getCategoryClasses(
               post.category
             )}`}
           >
             {post.category}
           </span>
-          <span className="flex items-center gap-1 text-gray-600 text-xs">
-            <User className="w-3 h-3" />
-            {post.nickname}
-          </span>
         </div>
 
-        {/* description */}
+        {/* Title */}
+        <h2 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+          {post.title}
+        </h2>
+
+        {/* Description */}
         {detailed ? (
-          <p className="text-gray-700 mb-4">{post.description}</p>
-        ) : (
-          <p className="text-gray-700 text-sm mb-3 line-clamp-3">
+          <p className="text-gray-700 text-sm mb-4 leading-relaxed">
             {post.description}
+          </p>
+        ) : (
+          <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+            {post.description || " "}
           </p>
         )}
 
-        {/* location + time */}
-        <div className="flex justify-between text-sm text-gray-500 mt-2">
-          <div className="flex items-center gap-1">
-            <MapPin className="w-4 h-4" />
-            {`${post.street_name || ""}${
-              post.suburb ? ", " + post.suburb : ""
-            }${post.postcode ? " " + post.postcode : ""}`}
+        {/* Spacer to push footer to bottom */}
+        <div className="flex-1"></div>
+
+        {/* Footer - Location, Author, Date */}
+        <div className="pt-4 border-t border-gray-100 space-y-2">
+          {/* Location */}
+          <div className="flex items-start gap-2 text-xs text-gray-500">
+            <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+            <span className="line-clamp-1">{formatLocation()}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Calendar className="w-4 h-4" />
-            {new Date(post.created_at).toLocaleDateString()}
+
+          {/* Author and Date */}
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <div className="flex items-center gap-1.5">
+              <User className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="truncate max-w-[120px]">{displayName}</span>
+            </div>
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>{new Date(post.created_at).toLocaleDateString()}</span>
+            </div>
           </div>
         </div>
       </CardContent>

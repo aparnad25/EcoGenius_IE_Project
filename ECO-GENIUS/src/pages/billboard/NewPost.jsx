@@ -24,6 +24,38 @@ export default function NewPost() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // refs for scrolling/focusing invalid fields
+  const titleRef = useRef(null);
+  const streetRef = useRef(null);
+  const suburbRef = useRef(null);
+  const postcodeRef = useRef(null);
+  const descriptionRef = useRef(null);
+
+  // Add timestamp tracking for preventing duplicate submissions
+  const lastSubmitTimeRef = useRef(0);
+  const SUBMIT_COOLDOWN = 5000; // 5 seconds
+
+  const scrollAndFocus = (nodeOrRef) => {
+    try {
+      const node = nodeOrRef && nodeOrRef.current ? nodeOrRef.current : nodeOrRef;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      const absoluteY = rect.top + window.pageYOffset;
+      const target = Math.max(0, absoluteY - window.innerHeight / 2 + rect.height / 2);
+      window.scrollTo({ top: target, behavior: "smooth" });
+      // focus after a small delay to allow scroll to start
+      setTimeout(() => {
+        try {
+          node.focus({ preventScroll: true });
+        } catch {
+          try { node.focus(); } catch { /* ignore focus failure */ }
+        }
+      }, 120);
+    } catch {
+      /* ignore overall scroll/focus errors */
+    }
+  };
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -38,7 +70,7 @@ export default function NewPost() {
   const [titleError, setTitleError] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [photoConfirmed, setPhotoConfirmed] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
@@ -97,6 +129,12 @@ export default function NewPost() {
     if (name === "street_name" && streetError && !/\d/.test(value)) {
       setStreetError("");
     }
+    if (name === "suburb" && suburbError) {
+      // clear suburb error when user types a valid suburb (letters and spaces) or when not empty
+      if (value.trim() && /^[A-Za-z\s]+$/.test(value)) {
+        setSuburbError("");
+      }
+    }
   };
 
   const handleStreetBlur = (e) => {
@@ -121,13 +159,30 @@ export default function NewPost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if within cooldown period
+    const now = Date.now();
+    const timeSinceLastSubmit = now - lastSubmitTimeRef.current;
+    
+    if (timeSinceLastSubmit < SUBMIT_COOLDOWN) {
+      const remainingSeconds = Math.ceil((SUBMIT_COOLDOWN - timeSinceLastSubmit) / 1000);
+      toast({
+        title: "⏳ Please wait",
+        description: `Please wait ${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''} before submitting again.`,
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setLoading(true);
     let hasError = false;
+    const errors = {};
     
     // title validation, title can not be empty
     if (!form.title.trim()) {
       setTitleError("You need to fill Title.");
       hasError = true;
+      errors.title = true;
     } else {
       setTitleError("");
     }
@@ -136,21 +191,24 @@ export default function NewPost() {
     if (!form.street_name.trim()) {
       setStreetError("You need to fill Street name.🙂");
       hasError = true;
+      errors.street_name = true;
     } else if (/\d/.test(form.street_name)) {
       setStreetError("Street name cannot contain numbers.");
       hasError = true;
+      errors.street_name = true;
     } else {
       setStreetError("");
     }
     
-    // suburb validation, only letters and spaces allowed if provided
-    if (form.suburb.trim()) {
-      if (!/^[A-Za-z\s]+$/.test(form.suburb)) {
-        setSuburbError("Suburb can only contain letters and spaces.");
-        hasError = true;
-      } else {
-        setSuburbError("");
-      }
+    // suburb validation: required, only letters and spaces allowed
+    if (!form.suburb.trim()) {
+      setSuburbError("You need to fill Suburb.");
+      hasError = true;
+      errors.suburb = true;
+    } else if (!/^[A-Za-z\s]+$/.test(form.suburb)) {
+      setSuburbError("Suburb can only contain letters.");
+      hasError = true;
+      errors.suburb = true;
     } else {
       setSuburbError("");
     }
@@ -160,6 +218,7 @@ export default function NewPost() {
       if (!/^\d{4}$/.test(form.postcode)) {
         setPostcodeError("Postcode must be 4 digits.");
         hasError = true;
+        errors.postcode = true;
       } else {
         setPostcodeError("");
       }
@@ -168,11 +227,33 @@ export default function NewPost() {
     }
     
     if (hasError) {
+      // focus/scroll first invalid field (center of screen)
+      const order = ["title", "street_name", "suburb", "postcode", "description"];
+      const firstKey = order.find((k) => errors[k]);
+      const refMap = {
+        title: titleRef,
+        street_name: streetRef,
+        suburb: suburbRef,
+        postcode: postcodeRef,
+        description: descriptionRef,
+      };
+      const targetRef = refMap[firstKey];
+      if (targetRef && targetRef.current) {
+        scrollAndFocus(targetRef);
+      } else {
+        const el = document.querySelector(`[name="${firstKey}"]`);
+        if (el) {
+          scrollAndFocus(el);
+        }
+      }
       setLoading(false);
       return;
     }
     
     try {
+      // Update last submit timestamp before API call
+      lastSubmitTimeRef.current = now;
+      
       const res = await createPost(form);
       toast({
         title: "✅ Post Created",
@@ -181,9 +262,12 @@ export default function NewPost() {
       setTimeout(() => {
         navigate(`/billboard/posts/${res.id}`);
       }, 2000);
-    } catch {
+    } catch (error) {
+      // Reset timestamp on failure so user can retry
+      lastSubmitTimeRef.current = 0;
       toast({
         title: "❌ Failed to create post",
+        description: error?.message || "Please try again",
         variant: "destructive",
       });
     } finally {
@@ -220,6 +304,7 @@ export default function NewPost() {
                 </Label>
                 <Input
                   id="title"
+                  ref={titleRef}
                   name="title"
                   value={form.title}
                   onChange={handleChange}
@@ -273,10 +358,11 @@ export default function NewPost() {
                 <Label htmlFor="description" className="text-sm font-semibold text-gray-700">
                   Description
                   <span className="block text-xs font-normal text-gray-500 mt-1">
-                    Describe the item's condition, size, and any relevant details (optional)
+                    Describe the item&apos;s condition, size, and any relevant details (optional)
                   </span>
                 </Label>
                 <Textarea
+                  ref={descriptionRef}
                   id="description"
                   name="description"
                   value={form.description}
@@ -314,6 +400,7 @@ export default function NewPost() {
                 </Label>
                 <Input
                   id="street_name"
+                  ref={streetRef}
                   name="street_name"
                   value={form.street_name}
                   onChange={handleChange}
@@ -331,10 +418,11 @@ export default function NewPost() {
                 <div>
                   <Label htmlFor="suburb" className="text-sm font-semibold text-gray-700">
                     Suburb
-                    <span className="block text-xs font-normal text-gray-500 mt-1">Optional</span>
+                    <span className="text-red-600 ml-1">*</span>
                   </Label>
                   <Input
                     id="suburb"
+                    ref={suburbRef}
                     name="suburb"
                     value={form.suburb}
                     onChange={handleChange}
@@ -349,10 +437,11 @@ export default function NewPost() {
                 <div>
                   <Label htmlFor="postcode" className="text-sm font-semibold text-gray-700">
                     Postcode
-                    <span className="block text-xs font-normal text-gray-500 mt-1">Optional</span>
+                    <span className="text-xs font-normal text-gray-500 ml-2">(optional)</span>
                   </Label>
                   <Input
                     id="postcode"
+                    ref={postcodeRef}
                     name="postcode"
                     value={form.postcode}
                     onChange={handleChange}
@@ -551,7 +640,7 @@ export default function NewPost() {
             <Button
               type="submit"
               disabled={loading}
-              className="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 hover:-translate-y-0.5 hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none min-w-[180px]"
+              className="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 hover:-translate-y-0.5 hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none min-w-[180px]"
             >
               {loading ? "Creating..." : "Create Post"}
             </Button>
