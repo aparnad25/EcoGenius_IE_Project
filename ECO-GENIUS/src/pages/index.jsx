@@ -8,6 +8,7 @@ import Billboard from "./billboard/Billboard.jsx";
 import NewPost from "./billboard/NewPost.jsx";
 import PostDetail from "./billboard/PostDetail.jsx";
 import CouncilPage from "./Council.jsx";
+import PetParks from "./PetParks.jsx";
 
 import {
   BrowserRouter as Router,
@@ -22,8 +23,7 @@ const PAGES = {
   ScanItem: ScanItem,
   SearchGuide: SearchGuide,
   Billboard: Billboard,
-  Visualization: Visualization, 
-  Council: CouncilPage,
+  Visualization: Visualization, // Add this line
 };
 
 function _getCurrentPage(url) {
@@ -55,7 +55,8 @@ function PagesContent() {
         <Route path="/scanner" element={<ScanItem />} />
         <Route path="/searchguide" element={<SearchGuide />} />
         <Route path="/billboard" element={<Billboard />} />
-        <Route path="/visualization" element={<Visualization />} />{" "}{/* Add this route */}
+        <Route path="/visualization" element={<Visualization />} />{" "}
+        <Route path="/petparks" element={<PetParks />} />
         <Route path="/billboard/posts/new" element={<NewPost />} />
         <Route path="/billboard/posts/:postId" element={<PostDetail />} />
         <Route path="/council" element={<CouncilPage />} />

@@ -6,7 +6,8 @@ import {
   Users,
   LayoutDashboard,
   BarChart3,
-  FileText
+  FileText,
+  PawPrint,
 } from "lucide-react";
 
 export default function Layout({ children }) {
@@ -36,6 +37,12 @@ export default function Layout({ children }) {
       url: "/billboard",
       icon: Users,
       color: "text-purple-600",
+    },
+    {
+    title: "Pet Parks",
+    url: "/petparks",
+    icon: PawPrint,
+    color: "text-green-600",
     },
     {
       title: "Data Analytics",
