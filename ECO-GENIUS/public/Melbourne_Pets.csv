@@ -1,0 +1,116 @@
+﻿Park_Name,Council,Latitude,Longitude,Suburb,Off_Leash_Area,Dog_Bag_Dispenser,Bins,Water_Fountain
+Royal Park (Dog Area 1),Parks Victoria,-37.7862,144.9536,Parkville,Yes,Yes,Yes,Yes
+Royal Park (Dog Area 2),Parks Victoria,-37.7894,144.9542,Parkville,Yes,Yes,Yes,Yes
+Royal Park (Dog Area 3),Parks Victoria,-37.7851,144.9568,Parkville,Yes,Yes,Yes,Yes
+Albert Park (North End),City of Port Phillip,-37.8392,144.9631,South Melbourne,Yes,Yes,Yes,Yes
+Albert Park (West),City of Port Phillip,-37.8456,144.9594,Albert Park,Yes,Yes,Yes,Yes
+Edinburgh Gardens (North),City of Yarra,-37.7719,144.9994,Fitzroy North,Yes,Yes,Yes,Yes
+Edinburgh Gardens (East),City of Yarra,-37.7732,145.0012,Fitzroy North,Yes,Yes,Yes,Yes
+Princes Park (Carlton North),City of Melbourne,-37.7832,144.9694,Carlton North,Yes,Yes,Yes,Yes
+Fawkner Park (Off-Leash Zone),City of Melbourne,-37.8354,144.9789,South Yarra,Yes,Yes,Yes,Yes
+JJ Holland Park (Dog Area),City of Melbourne,-37.7564,144.9389,Kensington,Yes,Yes,Yes,Yes
+Merri Creek Linear Park,City of Merri-bek,-37.7456,144.9856,Brunswick,Yes,Yes,Yes,No
+Yarra Park (Outer Ground),City of Melbourne,-37.8225,144.9834,Richmond,Yes,No,Yes,No
+Burnley Park,City of Melbourne,-37.8264,145.0156,Richmond,Yes,Yes,Yes,Yes
+Fitzroy Gardens (Limited Area),City of Melbourne,-37.8136,144.98,East Melbourne,No,Yes,Yes,Yes
+Treasury Gardens,City of Melbourne,-37.8125,144.9725,East Melbourne,No,Yes,Yes,Yes
+Carlton Gardens,City of Melbourne,-37.8056,144.9719,Carlton,No,Yes,Yes,Yes
+Flagstaff Gardens,City of Melbourne,-37.8108,144.9556,Melbourne,No,Yes,Yes,Yes
+Westgate Park,City of Port Phillip,-37.8367,144.9067,Port Melbourne,Yes,Yes,Yes,Yes
+Gasworks Arts Park,City of Port Phillip,-37.7928,145.0086,Albert Park,Yes,Yes,Yes,Yes
+Catani Gardens,City of Port Phillip,-37.8683,144.9678,St Kilda,Yes,Yes,Yes,Yes
+St Kilda Botanical Gardens,City of Port Phillip,-37.8542,144.9789,St Kilda,Yes,Yes,Yes,Yes
+Elwood Park,City of Port Phillip,-37.8861,144.9822,Elwood,Yes,Yes,Yes,Yes
+Peanut Farm Reserve,City of Port Phillip,-37.8978,144.9933,St Kilda East,Yes,Yes,Yes,Yes
+Alma Park,City of Port Phillip,-37.8672,144.9989,St Kilda East,Yes,Yes,Yes,Yes
+Caulfield Park,City of Glen Eira,-37.8833,145.0333,Caulfield,Yes,Yes,Yes,Yes
+Harold Holt Memorial Swimming Centre,City of Stonnington,-37.8889,145.0378,Glen Iris,No,Yes,Yes,Yes
+Como Park,City of Stonnington,-37.8506,145.0289,South Yarra,Yes,Yes,Yes,Yes
+Toorak Park,City of Stonnington,-37.8422,145.0189,Toorak,Yes,Yes,Yes,Yes
+Kooyong Park,City of Stonnington,-37.8394,145.0422,Kooyong,Yes,Yes,Yes,Yes
+Hawthorn Recreation Reserve,City of Boroondara,-37.8167,145.0333,Hawthorn,Yes,Yes,Yes,Yes
+Gordon Barnard Reserve,City of Boroondara,-37.8056,145.0544,Camberwell,Yes,Yes,Yes,Yes
+Camberwell Sports Ground,City of Boroondara,-37.8278,145.0567,Camberwell,Yes,Yes,Yes,Yes
+Beckett Park,City of Yarra,-37.7856,145.0222,Abbotsford,Yes,Yes,Yes,Yes
+Darling Gardens,City of Yarra,-37.7944,145.0067,Clifton Hill,Yes,Yes,Yes,Yes
+Ramsden Street Reserve,City of Yarra,-37.7778,145.0178,Clifton Hill,Yes,Yes,Yes,Yes
+All Nations Park,City of Yarra,-37.7611,145.0089,Northcote,Yes,Yes,Yes,Yes
+Fairfield Park,City of Yarra,-37.7731,145.0189,Fairfield,Yes,Yes,Yes,Yes
+Darebin Parklands,City of Yarra,-37.7456,145.0133,Alphington,Yes,Yes,Yes,Yes
+Coburg Lake Reserve,City of Merri-bek,-37.7356,144.9622,Coburg,Yes,Yes,Yes,Yes
+Brunswick Park,City of Merri-bek,-37.7689,144.9644,Brunswick,Yes,Yes,Yes,Yes
+Gilpin Park,City of Merri-bek,-37.7833,144.9456,Brunswick West,Yes,Yes,Yes,Yes
+Moonee Ponds Creek Trail,City of Merri-bek,-37.7644,144.9344,Brunswick West,Yes,Yes,Yes,No
+Quarries Park,City of Merri-bek,-37.7556,144.9189,Clifton Hill,Yes,Yes,Yes,Yes
+Victoria Park,City of Yarra,-37.8019,144.9911,Collingwood,Yes,Yes,Yes,Yes
+Collingwood Children's Farm,City of Yarra,-37.8044,144.9933,Abbotsford,Yes,Yes,Yes,Yes
+Studley Park,City of Boroondara,-37.8056,145.0144,Kew,Yes,Yes,Yes,Yes
+Kew East Park,City of Boroondara,-37.7944,145.0556,Kew East,Yes,Yes,Yes,Yes
+Willsmere Park,City of Boroondara,-37.7889,145.0378,Kew,Yes,Yes,Yes,Yes
+Lynden Park,City of Boroondara,-37.8167,145.0789,Camberwell,Yes,Yes,Yes,Yes
+Boroondara Park,City of Boroondara,-37.8278,145.0644,Camberwell,Yes,Yes,Yes,Yes
+Hays Paddock,City of Boroondara,-37.8333,145.0822,Kew,Yes,Yes,Yes,Yes
+Victoria Gardens,City of Melbourne,-37.8144,144.9956,Richmond,Yes,Yes,Yes,Yes
+Knox Park Reserve (Fenced Dog Park),Knox City Council,-37.8833,145.2167,Knoxfield,Yes,Yes,Yes,Yes
+Emerson Place Reserve,Knox City Council,-37.8722,145.2444,Rowville,Yes,Yes,Yes,Yes
+Casey Fields Fenced Dog Park,City of Casey,-38.0833,145.3167,Cranbourne East,Yes,Yes,Yes,Yes
+Casey Fields Dog Off Leash Area,City of Casey,-38.0833,145.3167,Cranbourne East,Yes,Yes,Yes,Yes
+Guru Nanak Lake (Berwick Springs),City of Casey,-38.0278,145.35,Berwick,Yes,Yes,Yes,Yes
+Bunjil Place Park,City of Casey,-38.0167,145.3,Narre Warren,Yes,Yes,Yes,Yes
+Cascades on Clyde Wetlands,City of Casey,-38.1,145.3833,Clyde North,Yes,Yes,Yes,No
+Tooradin Dog Park,City of Casey,-38.2167,145.3333,Tooradin,Yes,Yes,Yes,Yes
+Frog Hollow Reserve,City of Casey,-38.1333,145.3667,Berwick,Yes,Yes,Yes,Yes
+Hinkler Reserve,City of Monash,-37.8667,145.1667,Glen Waverley,Yes,Yes,Yes,No
+Damper Creek Reserve,City of Monash,-37.85,145.1333,Mount Waverley,Yes,Yes,Yes,Yes
+Heany Street Reserve (Mt Waverley Linear),City of Monash,-37.85,145.1333,Mount Waverley,Yes,Yes,Yes,Yes
+Jack Edwards Reserve,City of Monash,-37.8889,145.0889,Oakleigh,Yes,Yes,Yes,Yes
+Caloola Reserve,City of Monash,-37.8944,145.0833,Oakleigh,Yes,Yes,Yes,Yes
+Scotchmans Run Reserve,City of Monash,-37.8889,145.0944,Oakleigh,Yes,Yes,Yes,No
+Princes Highway Reserve,City of Monash,-37.8944,145.1,Oakleigh East,Yes,Yes,Yes,Yes
+F E Hunt Reserve,City of Monash,-37.8889,145.1056,Oakleigh East,Yes,Yes,Yes,No
+Davies Reserve,City of Monash,-37.9056,145.0944,Oakleigh South,Yes,Yes,Yes,No
+Jells Park,Parks Victoria,-37.8833,145.2,Wheelers Hill,No,Yes,Yes,Yes
+Nortons Park,Knox City Council,-37.8833,145.2167,Wheelers Hill,Yes,Yes,Yes,Yes
+Mahoneys Reserve Oval,City of Whitehorse,-37.8333,145.3,Forest Hill,Yes,Yes,Yes,No
+Brighton Dog Beach (Sandown Street),City of Bayside,-37.9167,145,Brighton,Yes,Yes,Yes,Yes
+Altona Dog Beach,Hobsons Bay City Council,-37.8667,144.8333,Altona,Yes,Yes,Yes,Yes
+PA Burns Reserve,Hobsons Bay City Council,-37.8667,144.8333,Altona,Yes,Yes,Yes,Yes
+St Kilda West Beach,City of Port Phillip,-37.8667,144.9667,St Kilda,Yes,Yes,Yes,Yes
+St Kilda Harbour,City of Port Phillip,-37.8667,144.9667,St Kilda,Yes,Yes,Yes,Yes
+Elwood Beach (North End),City of Port Phillip,-37.8833,145,Elwood,Yes,Yes,Yes,Yes
+Port Melbourne Beach,City of Port Phillip,-37.8333,144.9167,Port Melbourne,Yes,Yes,Yes,Yes
+Sandridge Beach,City of Port Phillip,-37.8333,144.9167,Port Melbourne,Yes,Yes,Yes,Yes
+Mentone Beach,City of Kingston,-37.9833,145.05,Mentone,Yes,Yes,Yes,Yes
+Williamstown Beach,Hobsons Bay City Council,-37.8667,144.9,Williamstown,Yes,Yes,Yes,Yes
+Keast Park Dog Beach,Frankston City Council,-38.15,145.1167,Frankston,Yes,Yes,Yes,Yes
+Royal Beach,Mornington Peninsula Shire,-38.2167,145.1333,Mornington,Yes,Yes,Yes,Yes
+Flinders Beach,Mornington Peninsula Shire,-38.45,145.0167,Flinders,Yes,Yes,Yes,No
+Green Point Beach,City of Bayside,-37.9167,145,Brighton,Yes,Yes,Yes,No
+Hampton Dog Beach,City of Bayside,-37.95,145.0167,Hampton,Yes,Yes,Yes,No
+Sandringham Harbour Beach,City of Bayside,-37.95,145.0333,Sandringham,Yes,Yes,Yes,Yes
+Ricketts Point Beach,City of Bayside,-37.9667,145.0333,Beaumaris,Yes,Yes,Yes,No
+Fraser Street Reserve,Melton City Council,-37.6833,144.5667,Melton South,Yes,Yes,Yes,Yes
+Toolern Creek Linear Park,Melton City Council,-37.7167,144.5833,Melton,Yes,Yes,Yes,No
+Eastern North Reserve,City of Port Phillip,-37.8333,144.9667,South Melbourne,Yes,Yes,Yes,Yes
+Curtain Square,City of Melbourne,-37.8,144.9667,Carlton North,Yes,Yes,Yes,Yes
+MacArthur Square,City of Melbourne,-37.8,144.9833,Carlton,Yes,Yes,Yes,Yes
+M.O. Moran Reserve Fenced Dog Park,City of Port Phillip,-37.8889,145,Elwood,Yes,Yes,Yes,Yes
+Alma Park West,City of Port Phillip,-37.8694,145.0033,St Kilda East,Yes,Yes,Yes,Yes
+Alma Park East,City of Port Phillip,-37.8694,145.0033,St Kilda East,Yes,Yes,Yes,Yes
+Barkly Gardens,City of Yarra,-37.825,145,Richmond,Yes,Yes,Yes,Yes
+Doug Denyer Reserve,City of Kingston,-38,145.1,Mordialloc,Yes,Yes,Yes,Yes
+Bundoora Park Fenced Dog Park,City of Darebin,-37.7167,145.05,Bundoora,Yes,Yes,Yes,Yes
+Footscray Park,City of Maribyrnong,-37.7944,144.8944,Footscray,Yes,Yes,Yes,No
+Scovell Reserve,City of Maribyrnong,-37.7833,144.8611,Maidstone,Yes,Yes,Yes,Yes
+Darebin Creek Forest Park,City of Banyule,-37.75,145.0667,Heidelberg West,Yes,Yes,Yes,No
+Darebin Parklands (Ivanhoe),City of Banyule,-37.7667,145.05,Ivanhoe,Yes,Yes,Yes,No
+Norris Bank Reserve Fenced Dog Park,City of Whittlesea,-37.6944,145.0722,Bundoora,Yes,Yes,Yes,Yes
+Green Gully Reserve Fenced Dog Park,City of Brimbank,-37.75,144.8167,Keilor,Yes,Yes,Yes,Yes
+Martin Reserve Fenced Dog Park,City of Maribyrnong,-37.7833,144.8833,West Footscray,Yes,Yes,Yes,Yes
+Kevin Flint Memorial Reserve,City of Darebin,-37.85,144.95,Preston,Yes,Yes,Yes,Yes
+Gilpin Park Fenced Dog Park,City of Merri-bek,-37.7833,144.9456,Brunswick West,Yes,Yes,Yes,Yes
+Clayton Reserve,City of Monash,-37.9167,145.1167,Clayton,Yes,Yes,Yes,Yes
+Briars Community Forest Fenced Dog Park,Mornington Peninsula Shire,-38.2833,145.0167,Mount Martha,Yes,Yes,Yes,No
+Mornington Civic Reserve Fenced Dog Park,Mornington Peninsula Shire,-38.2167,145.1333,Mornington,Yes,Yes,Yes,Yes
+Mount Martha Beach Walk,Mornington Peninsula Shire,-38.2667,145.0333,Mount Martha,Yes,No,No,No
+Hawker Beach,Mornington Peninsula Shire,-38.2667,145.0333,Mount Martha,Yes,No,No,No
