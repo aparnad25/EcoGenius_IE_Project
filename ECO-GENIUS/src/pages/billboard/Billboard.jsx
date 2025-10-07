@@ -21,12 +21,20 @@ export default function Billboard() {
     categories: ["Appliance", "Furniture", "Others"],
     locations: [],
   });
-  const filteredPosts = posts.filter(
-    (post) =>
-      filters.categories.includes(post.category) &&
-      (filters.locations.length === 0 ||
-        filters.locations.includes(post.suburb))
-  );
+  const filteredPosts = posts.filter((post) => {
+    const categories = filters.categories || [];
+    const suburb = filters.suburb || "";
+    const search = filters.search ? filters.search.toLowerCase() : "";
+
+    const matchesCategory = categories.includes(post.category);
+    const matchesSuburb = !suburb || post.suburb === suburb;
+    const matchesSearch =
+      !search ||
+      post.title.toLowerCase().includes(search) ||
+      post.description?.toLowerCase().includes(search);
+
+    return matchesCategory && matchesSuburb && matchesSearch;
+  });
 
   useEffect(() => {
     async function fetchPosts() {
@@ -49,7 +57,7 @@ export default function Billboard() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Billboard</h1>
         <p className="text-lg text-gray-600">
-          Share and discover reusable kerbside items in your neighbourhood
+          Share and discover reusable kerbside items within your neighbourhood
         </p>
         <div className="flex justify-end mt-4">
           {/* Create Post button */}
@@ -69,9 +77,13 @@ export default function Billboard() {
       </div>
 
       {loading && (
-        <div className="flex justify-center items-center py-10">
-          <Loader2 className="w-8 h-8 text-purple-600 animate-spin" />
-          <span className="ml-2 text-gray-600">Loading posts...</span>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="animate-pulse bg-gray-100 rounded-xl h-48 w-full"
+            ></div>
+          ))}
         </div>
       )}
 
