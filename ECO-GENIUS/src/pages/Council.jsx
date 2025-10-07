@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function CouncilPage() {
   return (
     <div className="p-8 space-y-8 bg-gray-50 min-h-screen">
