@@ -181,7 +181,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* User Persona Section - Compact Card */}
+        {/* User Persona Section - Compact Card 
         <section className="max-w-4xl mx-auto">
           <div 
             className="bg-white rounded-3xl shadow-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-shadow duration-300"
@@ -189,7 +189,7 @@ export default function Dashboard() {
           >
             <div className="p-8">
               <div className="grid md:grid-cols-4 gap-6 items-center">
-                {/* Image */}
+                {/* Image 
                 <div className="relative">
                   <div className="aspect-square bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl overflow-hidden">
                     <img 
@@ -198,13 +198,13 @@ export default function Dashboard() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* Green checkmark overlay */}
+                  {/* Green checkmark overlay 
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-sm font-bold">✓</span>
                   </div>
                 </div>
 
-                {/* Content */}
+                {/* Content 
                 <div className="md:col-span-3 space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
@@ -218,7 +218,7 @@ export default function Dashboard() {
                     The real person behind EcoGenius
                   </p>
 
-                  {/* The $800 Shock Story */}
+                  {/* The $800 Shock Story 
                   <div className="bg-red-50 border border-red-100 rounded-lg p-4">
                     <div className="flex items-start space-x-3">
                       <div className="text-red-500 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
@@ -233,7 +233,7 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* Profile Details and Read More */}
+                  {/* Profile Details and Read More 
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex space-x-4">
                       <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
@@ -257,15 +257,17 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
+            
           </div>
           
-          {/* Subtitle */}
+          {/* Subtitle 
           <div className="text-center mt-6">
             <p className="text-gray-500 italic">
               Click above to discover why thousands of Melbourne newcomers need EcoGenius
             </p>
           </div>
         </section>
+        */}
 
         {/* Mission Section */}
         <section className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
