@@ -93,7 +93,7 @@ export default function Footer() {
           {/* Additional Links */}
           <div className="flex space-x-6">
             <a href="/about" className="text-gray-500 hover:text-emerald-600 text-sm transition-colors">
-              About Us
+              About
             </a>
             <a href="/home" className="text-gray-500 hover:text-emerald-600 text-sm transition-colors">
               Home

@@ -13,6 +13,77 @@ export default function About() {
           </p>
         </section>
 
+        {/* Stats Section */}
+        <section>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Melbourne&apos;s Growing Waste Challenge
+            </h2>
+            <p className="text-lg text-gray-600">
+              The problem we are committed to solving.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Stat 1 */}
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" strokeWidth="2"/>
+                  <path strokeWidth="2" d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-emerald-600 mb-2">72% rise</div>
+              <p className="text-sm text-gray-600">
+                in illegal dumping in Melbourne&apos;s north (2024).
+              </p>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth="2" d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-emerald-600 mb-2">Up to $800</div>
+              <p className="text-sm text-gray-600">
+                average cost of private bulky waste removal.
+              </p>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth="2" d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-emerald-600 mb-2">40,000+</div>
+              <div className="text-lg font-semibold text-emerald-600 mb-2">tonnes</div>
+              <p className="text-sm text-gray-600">
+                of reusable goods sent to landfill each year.
+              </p>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth="2" d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="8.5" cy="7" r="4" strokeWidth="2"/>
+                  <path strokeWidth="2" d="M20 8v6M23 11h-6"/>
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-emerald-600 mb-2">68% of</div>
+              <div className="text-lg font-semibold text-emerald-600 mb-2">newcomers</div>
+              <p className="text-sm text-gray-600">
+                said they&apos;d use a cost-sharing or donation feature.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* How EcoGenius Helps Section */}
         <section className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
           <div className="text-center mb-12">
