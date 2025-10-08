@@ -13,4 +13,5 @@ EcoGenius is a smart sustainability scanner that uses AI to analyze products and
 
 ```bash
 npm install
+npm install papaparse react-select leaflet react-leaflet@^4
 npm run dev
