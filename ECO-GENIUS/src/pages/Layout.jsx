@@ -1,16 +1,18 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
 import {
   Home,
   LayoutDashboard,
-  Scan,
-  PawPrint,
   Lightbulb,
+  Menu,
+  X,
 } from "lucide-react";
 import Footer from "./Footer";
 
 export default function Layout({ children }) {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigationItems = [
     {
@@ -24,18 +26,6 @@ export default function Layout({ children }) {
       url: "/dashboard",
       icon: LayoutDashboard,
       color: "text-purple-600",
-    },
-    {
-      title: "AI Lens",
-      url: "/scanner",
-      icon: Scan,
-      color: "text-emerald-600",
-    },
-    {
-      title: "Pet Parks",
-      url: "/petparks",
-      icon: PawPrint,
-      color: "text-green-600",
     },
     {
       title: "About",
@@ -88,8 +78,45 @@ export default function Layout({ children }) {
                 </Link>
               ))}
             </nav>
+
+            {/* Mobile Hamburger Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-600" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-600" />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <nav className="max-w-7xl mx-auto px-4 py-4">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.title}
+                  to={item.url}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 mb-2 ${
+                    location.pathname
+                      .toLowerCase()
+                      .startsWith(item.url.toLowerCase())
+                      ? `bg-emerald-100 ${item.color}`
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                  }`}
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span>{item.title}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Main Content */}
@@ -97,34 +124,6 @@ export default function Layout({ children }) {
 
       {/* Footer */}
       <Footer />
-
-      {/* Mobile Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-50">
-        <div className="grid grid-cols-5 py-2">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.title}
-              to={item.url}
-              className={`flex flex-col items-center space-y-1 p-3 rounded-xl transition-all duration-200 ${
-                // Highlight navbar item if current path starts with the item's URL, including subroutes
-                location.pathname
-                  .toLowerCase()
-                  .startsWith(item.url.toLowerCase())
-                  ? `${item.color} bg-emerald-50`
-                  : "text-gray-400 hover:text-gray-600"
-              }`}
-            >
-              <item.icon className="w-5 h-5" />
-              <span className="text-xs font-medium truncate max-w-full">
-                {item.title}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </nav>
-
-      {/* Mobile bottom padding */}
-      <div className="h-20 md:hidden" />
     </div>
   );
 }

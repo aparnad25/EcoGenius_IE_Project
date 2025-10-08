@@ -1,7 +1,7 @@
 import Layout from "./Layout.jsx";
 
-import Home from "./Home";  // 新增
-import About from "./About";  // 新增
+import Home from "./Home";
+import About from "./About";
 import Dashboard from "./Dashboard";
 import ScanItem from "./ScanItem";
 import SearchGuide from "./SearchGuide";
@@ -21,8 +21,8 @@ import {
 } from "react-router-dom";
 
 const PAGES = {
-  Home: Home,  // 新增
-  About: About,  // 新增
+  Home: Home,
+  About: About,
   Dashboard: Dashboard,
   ScanItem: ScanItem,
   SearchGuide: SearchGuide,

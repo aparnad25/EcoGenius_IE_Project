@@ -2,16 +2,16 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    features: [
-      { name: "AI Lens", href: "/scanner" },
-      { name: "Search Guide", href: "/searchguide" },
-      { name: "Billboard", href: "/billboard" },
-      { name: "Pet Parks", href: "/petparks" },
+    councils: [
+      { name: "City of Melbourne", href: "https://data.melbourne.vic.gov.au/pages/home/" },
+      { name: "City of Yarra Range", href: "https://www.yarraranges.vic.gov.au/Home" },
+      { name: "City of Port Phillip", href: "https://www.portphillip.vic.gov.au/" },
+      { name: "City of Monash", href: "https://www.monash.vic.gov.au/Home" },
     ],
-    resources: [
-      { name: "Data Analytics", href: "/visualization" },
-      { name: "Council Info", href: "/council" },
-      { name: "Why EcoGenius", href: "/about" },
+    dataSources: [
+      { name: "DCCEEW", href: "https://www.dcceew.gov.au/" },
+      { name: "Victoria Government", href: "https://www.vic.gov.au/" },
+      { name: "Australian Bureau of Statistics", href: "https://www.abs.gov.au/" },
     ],
   };
 
@@ -41,19 +41,21 @@ export default function Footer() {
               Making waste disposal smarter, more affordable, and community-driven for Melbourne residents.
             </p>
             <p className="text-sm text-gray-500">
-              Developed by Group 12 – ChaiStix (FIT5120)
+              Developed by ChaiStix
             </p>
           </div>
 
-          {/* Features Links */}
+          {/* Council Links */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Features</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">Council Resources</h3>
             <ul className="space-y-2">
-              {footerLinks.features.map((link, index) => (
+              {footerLinks.councils.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-600 hover:text-emerald-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-emerald-600 transition-colors text-sm"
                   >
                     {link.name}
                   </a>
@@ -62,15 +64,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources Links */}
+          {/* Data Sources */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">Data Sources</h3>
             <ul className="space-y-2">
-              {footerLinks.resources.map((link, index) => (
+              {footerLinks.dataSources.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-600 hover:text-emerald-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-emerald-600 transition-colors text-sm"
                   >
                     {link.name}
                   </a>
@@ -86,7 +90,7 @@ export default function Footer() {
             © {currentYear} EcoGenius. All rights reserved.
           </p>
           
-          {/* Social or Additional Links */}
+          {/* Additional Links */}
           <div className="flex space-x-6">
             <a href="/about" className="text-gray-500 hover:text-emerald-600 text-sm transition-colors">
               About Us
