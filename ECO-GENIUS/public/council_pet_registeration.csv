@@ -1,0 +1,23 @@
+﻿Council,Registration_URL,Phone,Email,Annual_Fee_Desexed_Dog,Annual_Fee_Non_Desexed_Dog,Annual_Fee_Cat,Pensioner_Discount_Available,Obedience_Training_Discount,Renewal_Date,Online_Registration_Available,Microchip_Required,Desexing_Required_Cats,Notes
+City of Melbourne,https://www.melbourne.vic.gov.au/pet-registration,03 9658 9658,pets@melbourne.vic.gov.au,$0.00,$0.00,$0.00,Yes,Yes,10-Apr,Yes,Yes,No,Free registration for 2025-26 budget year
+City of Port Phillip,https://www.portphillip.vic.gov.au/pet-registration,03 9209 6777,pets@portphillip.vic.gov.au,$60,$110,$50,Yes,Yes,10-Apr,Yes,Yes,No,Obedience training can further reduce fees
+City of Yarra,https://www.yarracity.vic.gov.au/register-your-pet,03 9205 5555,animals@yarracity.vic.gov.au,$63,$116,$50,Yes,Yes,10-Apr,Yes,Yes,Yes,Cats must be desexed - mandatory in Yarra
+City of Merri-bek,https://www.merri-bek.vic.gov.au/pet-registration,03 9240 1111,animals@merri-bek.vic.gov.au,$65,$120,$52,Yes,Yes,10-Apr,Yes,Yes,Yes,Cats must be desexed - mandatory
+City of Boroondara,https://www.boroondara.vic.gov.au/pets-and-animals/pet-registration,03 9278 4444,boroondara@boroondara.vic.gov.au,$65.80,$121,$54,Yes,Yes,10-Apr,Yes,Yes,No,Higher fees but comprehensive services
+City of Stonnington,https://www.stonnington.vic.gov.au/pets/pet-registration,03 8290 1333,animals@stonnington.vic.gov.au,$70,$130,$55,Yes,Yes,10-Apr,Yes,Yes,No,Registration includes lifetime tag
+City of Glen Eira,https://www.gleneira.vic.gov.au/pets/pet-registration,03 9524 3333,mail@gleneira.vic.gov.au,$62,$115,$51,Yes,Yes,10-Apr,Yes,Yes,No,Pro-rata fees available from August
+Knox City Council,https://www.knox.vic.gov.au/pet-registration,03 9298 8000,knoxcc@knox.vic.gov.au,$58,$108,$48,Yes,Yes,10-Apr,Yes,Yes,No,18500+ dogs registered in Knox
+City of Casey,https://www.casey.vic.gov.au/pet-registration,03 9705 5200,caseycc@casey.vic.gov.au,$50,$95,$42,Yes,Yes,10-Apr,Yes,Yes,No,23420+ dogs registered - $50 per year
+City of Monash,https://www.monash.vic.gov.au/pet-registration,03 9518 3555,mail@monash.vic.gov.au,$68,$125,$56,Yes,Yes,10-Apr,Yes,Yes,No,45 designated off-leash areas available
+City of Bayside,https://www.bayside.vic.gov.au/pet-registration,03 9599 4444,bayside@bayside.vic.gov.au,$64,$118,$53,Yes,Yes,10-Apr,Yes,Yes,No,Beach access benefits for registered pets
+City of Kingston,https://www.kingston.vic.gov.au/pet-registration,03 9581 4444,kingston@kingston.vic.gov.au,$61,$113,$50,Yes,Yes,10-Apr,Yes,Yes,No,Registration supports animal management services
+Hobsons Bay City Council,https://www.hobsonsbay.vic.gov.au/pet-registration,03 9932 1000,customerservice@hobsonsbay.vic.gov.au,$59,$109,$49,Yes,Yes,10-Apr,Yes,Yes,No,Altona beach access for registered dogs
+Frankston City Council,https://www.frankston.vic.gov.au/pet-registration,03 9784 1000,info@frankston.vic.gov.au,$66,$122,$54,Yes,Yes,10-Apr,Yes,Yes,No,33 free roam areas available
+City of Darebin,https://www.darebin.vic.gov.au/pet-registration,03 8470 8888,mailbox@darebin.vic.gov.au,$62,$114,$51,Yes,Yes,10-Apr,Yes,Yes,No,Bundoora Park fenced facility benefits
+City of Banyule,https://www.banyule.vic.gov.au/pet-registration,03 9490 4222,banyule@banyule.vic.gov.au,$56,$104,$46,Yes,Yes,10-Apr,Yes,Yes,No,Dogs off-leash in most parks
+City of Whittlesea,https://www.whittlesea.vic.gov.au/pet-registration,03 9217 2170,info@whittlesea.vic.gov.au,$60,$111,$50,Yes,Yes,10-Apr,Yes,Yes,No,7 fully fenced dog parks available
+City of Maribyrnong,https://www.maribyrnong.vic.gov.au/pet-registration,03 9688 0200,info@maribyrnong.vic.gov.au,$64,$119,$53,Yes,Yes,10-Apr,Yes,Yes,No,Footscray Park access for residents
+City of Brimbank,https://www.brimbank.vic.gov.au/pet-registration,03 9249 4000,mail@brimbank.vic.gov.au,$58,$107,$48,Yes,Yes,10-Apr,Yes,Yes,No,Developing fenced dog park network
+Melton City Council,https://www.melton.vic.gov.au/pet-registration,03 9747 7200,info@melton.vic.gov.au,$55,$102,$45,Yes,Yes,10-Apr,Yes,Yes,No,4 designated fenced areas available
+Mornington Peninsula Shire,https://www.mornpen.vic.gov.au/pet-registration,03 5950 1000,customerservice@mornpen.vic.gov.au,$72,$135,$60,Yes,Yes,10-Apr,Yes,Yes,No,40+ leash-free parks - highest fees
+,,,,,,,,,,,,,
