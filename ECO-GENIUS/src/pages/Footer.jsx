@@ -4,7 +4,7 @@ export default function Footer() {
   const footerLinks = {
     councils: [
       { name: "City of Melbourne", href: "https://data.melbourne.vic.gov.au/pages/home/" },
-      { name: "City of Yarra Range", href: "https://www.yarraranges.vic.gov.au/Home" },
+      { name: "City of Yarra", href: "https://www.yarracity.vic.gov.au/" },
       { name: "City of Port Phillip", href: "https://www.portphillip.vic.gov.au/" },
       { name: "City of Monash", href: "https://www.monash.vic.gov.au/Home" },
     ],
