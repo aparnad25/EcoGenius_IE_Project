@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
       {/* Hero Section with Background Image */}
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
+      <section className="relative flex items-center justify-center overflow-hidden" style={{ height: 'calc(100vh - 64px)' }}>
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -58,38 +58,30 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator (optional) */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        {/* Scroll indicator */}
+        <a 
+          href="#features"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <svg className="w-6 h-6 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
           </svg>
-        </div>
+        </a>
       </section>
 
       {/* Feature Images Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Card 1 - Recycling Station */}
-          <div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
-            <div className="aspect-[4/3] overflow-hidden">
-              <img 
-                src="/recycling-station.jpg" 
-                alt="Recycling Station"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-900">Smart Sorting</h3>
-              <p className="text-sm text-gray-600 mt-1">Easy-to-use recycling suggestions</p>
-            </div>
-          </div>
-
-          {/* Card 2 - AI Scanning */}
-          <div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Card 1 - AI Lens */}
+          <a href="/scanner" className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
             <div className="aspect-[4/3] overflow-hidden">
               <img 
                 src="/ai-scanning.jpg" 
-                alt="AI Scanning"
+                alt="AI Lens"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
             </div>
@@ -97,37 +89,82 @@ export default function Home() {
               <h3 className="text-lg font-bold text-gray-900">AI Lens</h3>
               <p className="text-sm text-gray-600 mt-1">Instant disposal guidance</p>
             </div>
-          </div>
+          </a>
 
-          {/* Card 3 - Community Sharing */}
-          <div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+          {/* Card 2 - Search Guide */}
+          <a href="/searchguide" className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+            <div className="aspect-[4/3] overflow-hidden">
+              <img 
+                src="/recycling-station.jpg" 
+                alt="Search Guide"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-lg font-bold text-gray-900">Search Guide</h3>
+              <p className="text-sm text-gray-600 mt-1">Find disposal methods easily</p>
+            </div>
+          </a>
+
+          {/* Card 3 - Billboard */}
+          <a href="/billboard" className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
             <div className="aspect-[4/3] overflow-hidden">
               <img 
                 src="/community-sharing.jpg" 
-                alt="Community Sharing"
+                alt="Billboard"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-900">Share & Reuse</h3>
-              <p className="text-sm text-gray-600 mt-1">Give items a second life</p>
+              <h3 className="text-lg font-bold text-gray-900">Billboard</h3>
+              <p className="text-sm text-gray-600 mt-1">Share and discover reusable items</p>
             </div>
-          </div>
+          </a>
 
-          {/* Card 4 - Sustainable Living */}
-          <div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+          {/* Card 4 - Pet Parks */}
+          <a href="/petparks" className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
             <div className="aspect-[4/3] overflow-hidden">
               <img 
                 src="/sustainable-living.jpg" 
-                alt="Sustainable Living"
+                alt="Pet Parks"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-900">Pets Friendly</h3>
-              <p className="text-sm text-gray-600 mt-1">Building greener communities</p>
+              <h3 className="text-lg font-bold text-gray-900">Pet Parks</h3>
+              <p className="text-sm text-gray-600 mt-1">Pet-friendly parks and facilities</p>
             </div>
-          </div>
+          </a>
+
+          {/* Card 5 - Data Analytics */}
+          <a href="/visualization" className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+            <div className="aspect-[4/3] overflow-hidden">
+              <img 
+                src="/data-2.jpg" 
+                alt="Data Analytics"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-lg font-bold text-gray-900">Data Analytics</h3>
+              <p className="text-sm text-gray-600 mt-1">View waste disposal statistics</p>
+            </div>
+          </a>
+
+          {/* Card 6 - Council */}
+          <a href="/council" className="group bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+            <div className="aspect-[4/3] overflow-hidden">
+              <img 
+                src="/council-2.jpg" 
+                alt="Council"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-lg font-bold text-gray-900">Council</h3>
+              <p className="text-sm text-gray-600 mt-1">Council waste disposal info</p>
+            </div>
+          </a>
         </div>
       </section>
     </div>
