@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CouncilSelector from "../components/council/CouncilSelector";
 import BinGuide from "../components/recycling/BinGuide";
@@ -6,7 +6,6 @@ import BulkyWasteInfo from "../components/recycling/BulkyWasteInfo";
 import SpecialWasteGuide from "../components/recycling/SpecialWasteGuide";
 import ContactInfo from "../components/recycling/ContactInfo";
 import RecyclingMap from "../components/recycling/RecyclingMap";
-import BackToDashboard from '@/components/common/BackToDashboard';
 
 export default function Council() {
   const [selectedCouncil, setSelectedCouncil] = useState(null);
@@ -123,9 +122,6 @@ export default function Council() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto p-6 space-y-16">
-        {/* back button aligned to top-left of content */}
- 
-
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
