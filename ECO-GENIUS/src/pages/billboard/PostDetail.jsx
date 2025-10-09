@@ -5,7 +5,14 @@ import {
   createResponse,
   getResponses,
 } from "../../api/billboardApi";
-import { Loader2, MapPin, Calendar, User, ArrowLeft, MessageCircle } from "lucide-react";
+import {
+  Loader2,
+  MapPin,
+  Calendar,
+  User,
+  ArrowLeft,
+  MessageCircle,
+} from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -18,6 +25,7 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { Label } from "../../components/ui/label";
 import { Button } from "../../components/ui/button";
+import AliasGenerator from "../../components/common/AliasGenerator";
 
 export default function PostDetail() {
   const { postId } = useParams();
@@ -164,8 +172,14 @@ export default function PostDetail() {
               />
             </div>
           ) : (
-            <div className={`w-full h-64 bg-gradient-to-br ${getPlaceholder(post.category).gradient} flex flex-col items-center justify-center gap-3`}>
-              <span className="text-8xl opacity-40">{getPlaceholder(post.category).icon}</span>
+            <div
+              className={`w-full h-64 bg-gradient-to-br ${
+                getPlaceholder(post.category).gradient
+              } flex flex-col items-center justify-center gap-3`}
+            >
+              <span className="text-8xl opacity-40">
+                {getPlaceholder(post.category).icon}
+              </span>
             </div>
           )}
 
@@ -227,13 +241,20 @@ export default function PostDetail() {
             {responses.length === 0 ? (
               <div className="text-center py-8">
                 <MessageCircle className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-500">No responses yet. Be the first to reply!</p>
+                <p className="text-gray-500">
+                  No responses yet. Be the first to reply!
+                </p>
               </div>
             ) : (
               <ul className="space-y-4">
                 {responses.map((r) => (
-                  <li key={r.id} className="bg-green-50 p-4 rounded-xl border border-green-100">
-                    <p className="text-gray-800 mb-2 leading-relaxed">{r.content}</p>
+                  <li
+                    key={r.id}
+                    className="bg-green-50 p-4 rounded-xl border border-green-100"
+                  >
+                    <p className="text-gray-800 mb-2 leading-relaxed">
+                      {r.content}
+                    </p>
                     <div className="flex items-center gap-3 text-xs text-gray-500">
                       <span className="flex items-center gap-1">
                         <User className="w-3 h-3" />
@@ -256,26 +277,39 @@ export default function PostDetail() {
         <Card className="shadow-lg">
           <CardHeader className="border-b">
             <CardTitle className="text-xl">Leave a Reply</CardTitle>
-            <CardDescription>Share your thoughts or ask questions</CardDescription>
+            <CardDescription>
+              Share your thoughts or ask questions
+            </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <form onSubmit={handleReplySubmit} className="space-y-5">
               <div>
-                <Label htmlFor="nickname" className="text-sm font-semibold text-gray-700 mb-2 block">
+                <Label
+                  htmlFor="nickname"
+                  className="text-sm font-semibold text-gray-700 mb-2 block"
+                >
                   Your alias
                 </Label>
-                <Input
-                  id="nickname"
-                  type="text"
-                  value={replyNickname}
-                  onChange={(e) => setReplyNickname(e.target.value)}
-                  placeholder="Enter your alias"
-                  className="border-2 focus:border-green-600 focus:ring-green-100"
+                <div className="flex gap-3 items-start">
+                  <Input
+                    id="nickname"
+                    type="text"
+                    value={replyNickname}
+                    onChange={(e) => setReplyNickname(e.target.value)}
+                    placeholder="Enter your alias"
+                    className="border-2 focus:border-green-600 focus:ring-green-100"
+                  />
+                </div>
+                <AliasGenerator
+                  onGenerate={(alias) => setReplyNickname(alias)}
                 />
               </div>
 
               <div>
-                <Label htmlFor="reply" className="text-sm font-semibold text-gray-700 mb-2 block">
+                <Label
+                  htmlFor="reply"
+                  className="text-sm font-semibold text-gray-700 mb-2 block"
+                >
                   Your reply
                 </Label>
                 <Textarea
@@ -297,9 +331,13 @@ export default function PostDetail() {
             </form>
 
             {message && (
-              <div className={`mt-4 p-3 rounded-lg text-sm text-center ${
-                message.includes('✅') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-              }`}>
+              <div
+                className={`mt-4 p-3 rounded-lg text-sm text-center ${
+                  message.includes("✅")
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
                 {message}
               </div>
             )}

@@ -101,7 +101,7 @@ export default function Council() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white/90 backdrop-blur-sm border-b border-slate-200/60 sticky top-0 z-10"
+        className="bg-white/90 backdrop-blur-sm border-b border-slate-200/60 sticky top-16 z-10"
       >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
@@ -121,8 +121,9 @@ export default function Council() {
         </div>
       </motion.div>
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto p-6 space-y-16">
+  {/* Main Content */}
+  {/* add extra top padding so sticky header doesn't overlap content */}
+  <div className="max-w-6xl mx-auto p-6 pt-24 space-y-16">
         {/* back button aligned to top-left of content */}
  
 

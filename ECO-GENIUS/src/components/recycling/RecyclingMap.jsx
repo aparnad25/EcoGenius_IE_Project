@@ -16,11 +16,20 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
+// Default map centers for supported councils
 const councilCenters = {
   melbourne: { lat: -37.8136, lng: 144.9631 },
   monash: { lat: -37.9149, lng: 145.1633 },
   "port-phillip": { lat: -37.8659, lng: 144.9788 },
   yarra: { lat: -37.811, lng: 144.9969 },
+};
+
+// Mapping between councilId (router parameter) 与 CSV 文件里的 Council 名称
+const councilNameMap = {
+  melbourne: "Melbourne",
+  monash: "Monash",
+  "port-phillip": "Port Phillip",
+  yarra: "Yarra",
 };
 
 export default function RecyclingMap({ councilId }) {
@@ -33,76 +42,66 @@ export default function RecyclingMap({ councilId }) {
     const fetchCenters = async () => {
       setLoading(true);
       try {
-        // 临时 mock 数据 — 可后续替换为 CSV 或 API
-        const mockCenters = {
-          melbourne: [
-            {
-              id: 1,
-              name: "Melbourne Recycling Hub",
-              type: "Drop-off Centre",
-              latitude: -37.8136,
-              longitude: 144.9631,
-              address: "123 Collins Street, Melbourne",
-              accepted_items: ["Glass bottles", "E-waste", "Plastic bottles"],
-            },
-          ],
-          monash: [
-            {
-              id: 2,
-              name: "Monash Resource Recovery Centre",
-              type: "Drop-off Centre",
-              latitude: -37.9149,
-              longitude: 145.1633,
-              address: "2 Ferntree Gully Road, Clayton",
-              accepted_items: ["Paper", "Cardboard", "Metal cans"],
-            },
-          ],
-          "port-phillip": [
-            {
-              id: 3,
-              name: "Port Phillip Recycle Depot",
-              type: "Transfer Station",
-              latitude: -37.8659,
-              longitude: 144.9788,
-              address: "St Kilda Road, South Melbourne",
-              accepted_items: ["Plastic containers", "Old furniture"],
-            },
-          ],
-          yarra: [
-            {
-              id: 4,
-              name: "Yarra Recycling Facility",
-              type: "Transfer Station",
-              latitude: -37.811,
-              longitude: 144.9969,
-              address: "Smith Street, Collingwood",
-              accepted_items: ["Paper", "Glass", "Plastic"],
-            },
-          ],
-        };
+        const res = await fetch(
+          encodeURI(
+            "/Victoria's-waste-and-resource-recovery-infrastructure-map-data-March-2025.csv"
+          )
+        );
+        const text = await res.text();
 
-        const data = mockCenters[councilId] || [];
+        // parse CSV data
+        const rows = text.split("\n").map((r) => r.split(","));
+        const header = rows[0].map((h) => h.trim());
+        const data = rows
+          .slice(1)
+          .filter((r) => r.length > 1)
+          .map((r) =>
+            Object.fromEntries(r.map((v, i) => [header[i], v.trim()]))
+          );
 
+        // filter by selected council
+        const targetCouncil = councilNameMap[councilId];
+        const filtered = data.filter((item) => {
+          const name = item["Council"]?.toLowerCase();
+          return (
+            (name?.includes("melbourne") ||
+              name?.includes("monash") ||
+              name?.includes("port phillip") ||
+              name?.includes("yarra")) &&
+            name?.includes(targetCouncil.toLowerCase())
+          );
+        });
 
-        setCenters(data);
-        if (data.length > 0) {
-          const councilLocation = councilCenters[councilId];
-          setMapCenter([councilLocation.lat, councilLocation.lng]);
-        } else {
-          const councilLocation =
-            councilCenters[councilId] || councilCenters.melbourne;
-          setMapCenter([councilLocation.lat, councilLocation.lng]);
-        }
-        setMapKey(councilId + Date.now()); // Force re-render of map
+        // format data for map
+        const formatted = filtered.map((item, index) => ({
+          id: index,
+          name: item["Facility Name"] || "Unknown Facility",
+          type:
+            item["Infrastructure Type"] || item["Facility Type"] || "Facility",
+          latitude: parseFloat(item["Latitude"]),
+          longitude: parseFloat(item["Longitude"]),
+          address: item["Address"],
+          accepted_items: [
+            "General recycling",
+            "Organic waste",
+            "Hazardous waste",
+          ],
+        }));
+
+        setCenters(formatted);
+
+        // Set map center
+        const councilLocation =
+          councilCenters[councilId] || councilCenters.melbourne;
+        setMapCenter([councilLocation.lat, councilLocation.lng]);
+        setMapKey(councilId + Date.now());
       } catch (error) {
-        console.error("Error fetching recycling centers:", error);
+        console.error("Error loading CSV recycling centers:", error);
       }
       setLoading(false);
     };
 
-    if (councilId) {
-      fetchCenters();
-    }
+    if (councilId) fetchCenters();
   }, [councilId]);
 
   if (loading) {
@@ -125,7 +124,7 @@ export default function RecyclingMap({ councilId }) {
           Recycling & Disposal Centers
         </h2>
         <p className="text-lg text-slate-600">
-          Find facilities near you for special waste items
+          Facilities in {councilNameMap[councilId]}
         </p>
       </motion.div>
 
@@ -144,10 +143,16 @@ export default function RecyclingMap({ councilId }) {
           <CardContent className="p-0">
             <MapContainer
               key={mapKey}
-              center={mapCenter}
-              zoom={12}
+              bounds={
+                centers.length > 0
+                  ? L.latLngBounds(
+                      centers.map((c) => [c.latitude, c.longitude])
+                    )
+                  : L.latLngBounds([[mapCenter[0], mapCenter[1]]])
+              }
+              boundsOptions={{ padding: [80, 80], maxZoom: 13 }}
               scrollWheelZoom={false}
-              style={{ height: "400px", width: "100%" }}
+              style={{ height: "420px", width: "100%" }}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -176,6 +181,23 @@ export default function RecyclingMap({ councilId }) {
                           <li key={item}>{item}</li>
                         ))}
                       </ul>
+                      {/* Route button */}
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                          `${center.latitude},${center.longitude}`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open directions to ${center.name} in Google Maps`}
+                        className="inline-flex items-center mt-3 px-4 py-2 text-sm font-medium
+             border border-emerald-600 !text-emerald-700 no-underline 
+             bg-emerald-50/60 rounded-lg shadow-sm
+             hover:bg-emerald-500 hover:!text-white hover:shadow-md
+             transition-all duration-200"
+                      >
+                        <Map className="w-4 h-4 mr-2" />
+                        <span>Open in Google Maps</span>
+                      </a>
                     </div>
                   </Popup>
                 </Marker>

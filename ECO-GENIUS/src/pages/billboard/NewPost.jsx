@@ -16,6 +16,7 @@ import { ToastAction } from "../../components/ui/toast";
 import { Label } from "../../components/ui/label";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../components/ui/use-toast";
+import AliasGenerator from "../../components/common/AliasGenerator";
 
 export default function NewPost() {
   const [suburbError, setSuburbError] = useState("");
@@ -37,18 +38,26 @@ export default function NewPost() {
 
   const scrollAndFocus = (nodeOrRef) => {
     try {
-      const node = nodeOrRef && nodeOrRef.current ? nodeOrRef.current : nodeOrRef;
+      const node =
+        nodeOrRef && nodeOrRef.current ? nodeOrRef.current : nodeOrRef;
       if (!node) return;
       const rect = node.getBoundingClientRect();
       const absoluteY = rect.top + window.pageYOffset;
-      const target = Math.max(0, absoluteY - window.innerHeight / 2 + rect.height / 2);
+      const target = Math.max(
+        0,
+        absoluteY - window.innerHeight / 2 + rect.height / 2
+      );
       window.scrollTo({ top: target, behavior: "smooth" });
       // focus after a small delay to allow scroll to start
       setTimeout(() => {
         try {
           node.focus({ preventScroll: true });
         } catch {
-          try { node.focus(); } catch { /* ignore focus failure */ }
+          try {
+            node.focus();
+          } catch {
+            /* ignore focus failure */
+          }
         }
       }, 120);
     } catch {
@@ -159,25 +168,29 @@ export default function NewPost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Check if within cooldown period
     const now = Date.now();
     const timeSinceLastSubmit = now - lastSubmitTimeRef.current;
-    
+
     if (timeSinceLastSubmit < SUBMIT_COOLDOWN) {
-      const remainingSeconds = Math.ceil((SUBMIT_COOLDOWN - timeSinceLastSubmit) / 1000);
+      const remainingSeconds = Math.ceil(
+        (SUBMIT_COOLDOWN - timeSinceLastSubmit) / 1000
+      );
       toast({
         title: "⏳ Please wait",
-        description: `Please wait ${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''} before submitting again.`,
+        description: `Please wait ${remainingSeconds} second${
+          remainingSeconds > 1 ? "s" : ""
+        } before submitting again.`,
         variant: "destructive",
       });
       return;
     }
-    
+
     setLoading(true);
     let hasError = false;
     const errors = {};
-    
+
     // title validation, title can not be empty
     if (!form.title.trim()) {
       setTitleError("You need to fill Title.");
@@ -186,7 +199,7 @@ export default function NewPost() {
     } else {
       setTitleError("");
     }
-    
+
     // street_name validation, required and cannot contain numbers
     if (!form.street_name.trim()) {
       setStreetError("You need to fill Street name.🙂");
@@ -199,7 +212,7 @@ export default function NewPost() {
     } else {
       setStreetError("");
     }
-    
+
     // suburb validation: required, only letters and spaces allowed
     if (!form.suburb.trim()) {
       setSuburbError("You need to fill Suburb.");
@@ -212,7 +225,7 @@ export default function NewPost() {
     } else {
       setSuburbError("");
     }
-    
+
     // postcode validation, must be 4 digits if provided
     if (form.postcode.trim()) {
       if (!/^\d{4}$/.test(form.postcode)) {
@@ -225,10 +238,16 @@ export default function NewPost() {
     } else {
       setPostcodeError("");
     }
-    
+
     if (hasError) {
       // focus/scroll first invalid field (center of screen)
-      const order = ["title", "street_name", "suburb", "postcode", "description"];
+      const order = [
+        "title",
+        "street_name",
+        "suburb",
+        "postcode",
+        "description",
+      ];
       const firstKey = order.find((k) => errors[k]);
       const refMap = {
         title: titleRef,
@@ -249,11 +268,11 @@ export default function NewPost() {
       setLoading(false);
       return;
     }
-    
+
     try {
       // Update last submit timestamp before API call
       lastSubmitTimeRef.current = now;
-      
+
       const res = await createPost(form);
       toast({
         title: "✅ Post Created",
@@ -274,29 +293,36 @@ export default function NewPost() {
       setLoading(false);
     }
   };
+  const [alias, setAlias] = useState("");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 py-10 px-4">
       {/* Page Header */}
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">Create New Post</h1>
-        <p className="text-gray-600">Post kerbside items within the neighborhood</p>
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          Create New Post
+        </h1>
+        <p className="text-gray-600">
+          Post kerbside items within the neighborhood
+        </p>
       </div>
 
       {/* Form Container */}
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <form onSubmit={handleSubmit} className="space-y-8">
-          
           {/* Basic Information Section */}
           <div>
             <h2 className="text-xl font-semibold text-emerald-700 pb-2 mb-6 border-b-2 border-green-100">
               Basic Information
             </h2>
-            
+
             <div className="space-y-6">
               {/* Title */}
               <div>
-                <Label htmlFor="title" className="text-sm font-semibold text-gray-700">
+                <Label
+                  htmlFor="title"
+                  className="text-sm font-semibold text-gray-700"
+                >
                   Title<span className="text-red-600 ml-1">*</span>
                   <span className="block text-xs font-normal text-gray-500 mt-1">
                     Give the item a clear and descriptive title
@@ -326,13 +352,18 @@ export default function NewPost() {
                   Category<span className="text-red-600 ml-1">*</span>
                 </Label>
                 <div className="flex gap-4 mt-2">
-                  {['Appliance', 'Furniture', 'PLACEHOLDER (Pet things)','Others'].map((cat) => (
+                  {[
+                    "Appliance",
+                    "Furniture",
+                    "PLACEHOLDER (Pet things)",
+                    "Others",
+                  ].map((cat) => (
                     <label
                       key={cat}
                       className={`flex items-center px-5 py-3 border-2 rounded-lg cursor-pointer transition-all min-w-[140px] ${
                         form.category === cat
-                          ? 'border-emerald-600 bg-emerald-50'
-                          : 'border-gray-200 hover:border-emerald-600 hover:bg-green-50'
+                          ? "border-emerald-600 bg-emerald-50"
+                          : "border-gray-200 hover:border-emerald-600 hover:bg-green-50"
                       }`}
                     >
                       <input
@@ -341,11 +372,20 @@ export default function NewPost() {
                         value={cat}
                         checked={form.category === cat}
                         onChange={(e) =>
-                          setForm((prev) => ({ ...prev, category: e.target.value }))
+                          setForm((prev) => ({
+                            ...prev,
+                            category: e.target.value,
+                          }))
                         }
                         className="w-4 h-4 mr-3 accent-emerald-600"
                       />
-                      <span className={`text-sm ${form.category === cat ? 'font-semibold text-emerald-700' : ''}`}>
+                      <span
+                        className={`text-sm ${
+                          form.category === cat
+                            ? "font-semibold text-emerald-700"
+                            : ""
+                        }`}
+                      >
                         {cat}
                       </span>
                     </label>
@@ -355,10 +395,14 @@ export default function NewPost() {
 
               {/* Description */}
               <div>
-                <Label htmlFor="description" className="text-sm font-semibold text-gray-700">
+                <Label
+                  htmlFor="description"
+                  className="text-sm font-semibold text-gray-700"
+                >
                   Description
                   <span className="block text-xs font-normal text-gray-500 mt-1">
-                    Describe the item&apos;s condition, size, and any relevant details (optional)
+                    Describe the item&apos;s condition, size, and any relevant
+                    details (optional)
                   </span>
                 </Label>
                 <Textarea
@@ -388,11 +432,14 @@ export default function NewPost() {
             <h2 className="text-xl font-semibold text-emerald-700 pb-2 mb-6 border-b-2 border-green-100">
               Location Information
             </h2>
-            
+
             <div className="space-y-6">
               {/* Street Name */}
               <div>
-                <Label htmlFor="street_name" className="text-sm font-semibold text-gray-700">
+                <Label
+                  htmlFor="street_name"
+                  className="text-sm font-semibold text-gray-700"
+                >
                   Street Name<span className="text-red-600 ml-1">*</span>
                   <span className="block text-xs font-normal text-gray-500 mt-1">
                     Please do not include street numbers for privacy 😊
@@ -416,7 +463,10 @@ export default function NewPost() {
               {/* Suburb and Postcode - Two Columns */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <Label htmlFor="suburb" className="text-sm font-semibold text-gray-700">
+                  <Label
+                    htmlFor="suburb"
+                    className="text-sm font-semibold text-gray-700"
+                  >
                     Suburb
                     <span className="text-red-600 ml-1">*</span>
                   </Label>
@@ -435,9 +485,14 @@ export default function NewPost() {
                 </div>
 
                 <div>
-                  <Label htmlFor="postcode" className="text-sm font-semibold text-gray-700">
+                  <Label
+                    htmlFor="postcode"
+                    className="text-sm font-semibold text-gray-700"
+                  >
                     Postcode
-                    <span className="text-xs font-normal text-gray-500 ml-2">(optional)</span>
+                    <span className="text-xs font-normal text-gray-500 ml-2">
+                      (optional)
+                    </span>
                   </Label>
                   <Input
                     id="postcode"
@@ -457,20 +512,30 @@ export default function NewPost() {
 
               {/* Alias */}
               <div>
-                <Label htmlFor="nickname" className="text-sm font-semibold text-gray-700">
-                  Display Name (Alias)
+                <Label
+                  htmlFor="nickname"
+                  className="text-sm font-semibold text-gray-700"
+                >
+                  Display Your Alias
                   <span className="block text-xs font-normal text-gray-500 mt-1">
                     This name will be shown on your post (optional)
                   </span>
                 </Label>
-                <Input
-                  id="nickname"
-                  name="nickname"
-                  value={form.nickname}
-                  onChange={handleChange}
-                  placeholder="e.g., Sarah M."
-                  className="mt-2 border-2 focus:border-emerald-600"
-                />
+                <div className="flex gap-3 items-start mt-2">
+                  <Input
+                    id="nickname"
+                    name="nickname"
+                    value={form.nickname}
+                    onChange={handleChange}
+                    placeholder="e.g., Sarah"
+                    className="flex-1 border-2 focus:border-emerald-600"
+                  />
+                  <AliasGenerator
+                    onGenerate={(alias) =>
+                      setForm((prev) => ({ ...prev, nickname: alias }))
+                    }
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -480,7 +545,7 @@ export default function NewPost() {
             <h2 className="text-xl font-semibold text-emerald-700 pb-2 mb-6 border-b-2 border-green-100">
               Photos
             </h2>
-            
+
             {/* Confirmed Photo Thumbnail */}
             {photoConfirmed && previewUrl && (
               <div className="mb-6 flex justify-center">
@@ -522,8 +587,12 @@ export default function NewPost() {
                     <div className="text-gray-400 mb-5 flex justify-center">
                       <Upload className="w-14 h-14" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Upload Photo</h3>
-                    <p className="text-sm text-gray-500 mb-5">Choose from your device</p>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                      Upload Photo
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-5">
+                      Choose from your device
+                    </p>
                     <div className="inline-block px-6 py-2 border-2 border-gray-300 rounded-lg text-sm font-semibold text-gray-700 transition-colors hover:border-emerald-600 hover:text-emerald-700">
                       Browse Files
                     </div>
@@ -537,7 +606,9 @@ export default function NewPost() {
                     <div className="text-gray-400 mb-5 flex justify-center">
                       <Camera className="w-14 h-14" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Use Camera</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                      Use Camera
+                    </h3>
                     <p className="text-sm text-gray-500 mb-5">Take photo now</p>
                     <div className="inline-block px-6 py-2 border-2 border-gray-300 rounded-lg text-sm font-semibold text-gray-700 transition-colors hover:border-emerald-600 hover:text-emerald-700">
                       Open Camera
@@ -554,7 +625,8 @@ export default function NewPost() {
                 />
 
                 <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded text-sm text-yellow-800">
-                  📸 Currently supports 1 photo upload. Multiple photo upload will be available in the future!
+                  📸 Currently supports 1 photo upload. Multiple photo upload
+                  will be available in the future!
                 </div>
               </div>
             )}
@@ -595,7 +667,8 @@ export default function NewPost() {
                           setPhotoConfirmed(true);
                           toast({
                             title: "✅ Photo confirmed",
-                            description: "Your photo has been added to the post",
+                            description:
+                              "Your photo has been added to the post",
                           });
                         }}
                         className="bg-emerald-600 text-white hover:bg-emerald-700 px-6"

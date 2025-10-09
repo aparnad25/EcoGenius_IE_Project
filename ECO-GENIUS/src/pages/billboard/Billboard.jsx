@@ -128,7 +128,7 @@ export default function Billboard() {
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
-          <aside className={`lg:block ${showFilters ? 'block' : 'hidden'} w-full lg:w-72 bg-white rounded-xl shadow-md p-6 lg:sticky lg:top-4 h-fit`}>
+          <aside className={`lg:block ${showFilters ? 'block' : 'hidden'} w-full lg:w-72 bg-white rounded-xl shadow-md p-6 lg:sticky lg:top-20 h-fit`}>
             <h3 className="text-green-800 text-xl font-bold mb-6">Filters</h3>
 
             {/* Category Filter */}
