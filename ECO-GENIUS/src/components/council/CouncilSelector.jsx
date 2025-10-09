@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MapPin, Search, Building2, Loader2 } from "lucide-react";
+import { Search, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const councils = [
@@ -10,7 +11,7 @@ const councils = [
     id: 'melbourne',
     name: 'City of Melbourne',
     description: 'CBD and inner city areas',
-    icon: '🏙️',
+    logo: '/melbourne-logo.png',
     keywords: [
       'melbourne', 'carlton', 'carlton north', 'docklands', 'east melbourne',
       'flemington', 'kensington', 'north melbourne', 'parkville', 'port melbourne',
@@ -22,7 +23,7 @@ const councils = [
     id: 'monash',
     name: 'City of Monash',
     description: 'Eastern suburbs including Clayton',
-    icon: '🏫',
+    logo: '/monash-logo.png',
     keywords: [
       'ashwood', 'burwood', 'burwood east', 'clayton', 'clayton south',
       'glen waverley', 'hughesdale', 'mount waverley', 'mulgrave', 'notting hill',
@@ -33,7 +34,7 @@ const councils = [
     id: 'port-phillip',
     name: 'City of Port Phillip',
     description: 'St Kilda, South Melbourne areas',
-    icon: '🏖️',
+    logo: '/port-phillip-logo.png',
     keywords: [
       'albert park', 'balaclava', 'elwood', 'middle park', 'port melbourne',
       'ripponlea', 'south melbourne', 'st kilda', 'st kilda east',
@@ -44,7 +45,7 @@ const councils = [
     id: 'yarra',
     name: 'City of Yarra',
     description: 'Richmond, Collingwood areas',
-    icon: '🌳',
+    logo: '/yarra-logo.png',
     keywords: [
       'abbotsford', 'alphington', 'burnley', 'clifton hill', 'collingwood',
       'cremorne', 'fairfield', 'fitzroy', 'fitzroy north', 'princes hill',
@@ -183,12 +184,16 @@ export default function CouncilSelector({ onCouncilSelect, selectedCouncil }) {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center p-4 bg-emerald-50 rounded-lg border border-emerald-200"
               >
-                <div className="text-3xl mb-2">{searchResult.council.icon}</div>
+                <img 
+                  src={searchResult.council.logo} 
+                  alt={searchResult.council.name}
+                  className="w-16 h-16 mx-auto mb-2 object-contain"
+                />
                 <p className="text-emerald-800 font-semibold">
                   Found: {searchResult.council.name}
                 </p>
                 <p className="text-sm text-emerald-600">
-                  Matched: "{searchResult.matchedKeyword}"
+                  Matched: &quot;{searchResult.matchedKeyword}&quot;
                 </p>
                 <p className="text-xs text-emerald-500 mt-1">
                   Loading your council information...
@@ -217,7 +222,7 @@ export default function CouncilSelector({ onCouncilSelect, selectedCouncil }) {
       >
         <div className="text-center mb-4">
           <h3 className="text-lg font-semibold text-slate-700">Manual Selection</h3>
-          <p className="text-sm text-slate-500">Click your council if the search didn't work</p>
+          <p className="text-sm text-slate-500">Click your council if the search didn&apos;t work</p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-4">
@@ -238,7 +243,11 @@ export default function CouncilSelector({ onCouncilSelect, selectedCouncil }) {
               >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl">{council.icon}</div>
+                    <img 
+                      src={council.logo} 
+                      alt={council.name}
+                      className="w-12 h-12 object-contain"
+                    />
                     <div className="flex-1">
                       <h3 className="font-semibold text-lg text-slate-900 mb-1">
                         {council.name}
@@ -270,3 +279,8 @@ export default function CouncilSelector({ onCouncilSelect, selectedCouncil }) {
     </div>
   );
 }
+
+CouncilSelector.propTypes = {
+  onCouncilSelect: PropTypes.func.isRequired,
+  selectedCouncil: PropTypes.string,
+};
