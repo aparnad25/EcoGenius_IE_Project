@@ -25,8 +25,8 @@ export default function Dashboard() {
       ),
       link: "/searchguide",
       bgImage: "/searchguide.jpg",
-      iconBg: "bg-indigo-100",
-      iconColor: "text-indigo-600",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
     },
     {
       title: "Billboard",
@@ -40,8 +40,8 @@ export default function Dashboard() {
       ),
       link: "/billboard",
       bgImage: "/billboard.jpg",
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-600",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
     },
     {
       title: "Pet Parks",
@@ -54,8 +54,8 @@ export default function Dashboard() {
       ),
       link: "/petparks",
       bgImage: "/pets.jpg",
-      iconBg: "bg-green-100",
-      iconColor: "text-green-600",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
     },
     {
       title: "Data Analytics",
@@ -67,8 +67,8 @@ export default function Dashboard() {
       ),
       link: "/visualization",
       bgImage: "/data.jpg",
-      iconBg: "bg-orange-100",
-      iconColor: "text-orange-600",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
     },
     {
       title: "Council",
@@ -81,8 +81,8 @@ export default function Dashboard() {
       ),
       link: "/council",
       bgImage: "/council.jpg",
-      iconBg: "bg-sky-100",
-      iconColor: "text-sky-600",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
     },
   ];
 
