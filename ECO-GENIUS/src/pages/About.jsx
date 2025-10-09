@@ -4,13 +4,29 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
         
         {/* Page Title */}
-        <section className="text-center py-12">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Why EcoGenius
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Learn about our mission to make waste disposal smarter and more sustainable for Melbourne.
-          </p>
+        <section className="relative text-center py-20 rounded-3xl overflow-hidden shadow-xl">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/melbourne-city.jpg')",
+            }}
+          >
+            {/* Gradient Overlay for better readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/70 to-white/80"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6" style={{
+              textShadow: '0 2px 4px rgba(255, 255, 255, 0.8)'
+            }}>
+              Why EcoGenius
+            </h1>
+            <p className="text-xl text-gray-700 font-medium max-w-3xl mx-auto">
+              Making waste disposal smarter for Melbourne
+            </p>
+          </div>
         </section>
 
         {/* Stats Section */}
