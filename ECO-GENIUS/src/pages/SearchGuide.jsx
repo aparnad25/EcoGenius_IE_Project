@@ -7,6 +7,7 @@ import { searchRecyclingAdvice } from "../services/aiService";
 import SearchResults from "../components/search/SearchResults";
 import PopularItems from "../components/search/PopularItems";
 import CategoryFilter from "../components/search/CategoryFilter";
+import BackToDashboard from '@/components/common/BackToDashboard';
 
 const recyclingDatabase = [
   {
@@ -157,6 +158,7 @@ export default function SearchGuide() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <BackToDashboard />
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Recycling Search Guide</h1>
         <p className="text-lg text-gray-600">

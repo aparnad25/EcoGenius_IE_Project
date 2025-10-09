@@ -5,6 +5,7 @@ import { Loader2, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Papa from "papaparse";
 import Select from "react-select";
+import BackToDashboard from '@/components/common/BackToDashboard';
 
 export default function Billboard() {
   const [posts, setPosts] = useState([]);
@@ -92,19 +93,26 @@ export default function Billboard() {
 
   return (
     <div className="min-h-screen bg-green-50">
-      {/* Title Section */}
-      <div className="text-center pt-8 pb-4 px-4">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Billboard</h1>
-        <p className="text-lg text-gray-600 mb-6">
-          Share and discover reusable kerbside items within your neighbourhood
-        </p>
-        <div className="flex justify-center">
-          <button
-            onClick={() => navigate("/billboard/posts/new")}
-            className="px-6 py-2.5 bg-teal-600 text-white rounded-xl hover:bg-teal-700 transition-colors font-medium shadow-sm hover:shadow-md"
-          >
-            + Create Post
-          </button>
+      {/* Header / Title Section: back button is placed inside the page container to align left */}
+      <div className="pt-8 pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-4">
+            <BackToDashboard />
+          </div>
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Billboard</h1>
+            <p className="text-lg text-gray-600 mb-6">
+              Share and discover reusable kerbside items within your neighbourhood
+            </p>
+            <div className="flex justify-center">
+              <button
+                onClick={() => navigate("/billboard/posts/new")}
+                className="px-6 py-2.5 bg-teal-600 text-white rounded-xl hover:bg-teal-700 transition-colors font-medium shadow-sm hover:shadow-md"
+              >
+                + Create Post
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

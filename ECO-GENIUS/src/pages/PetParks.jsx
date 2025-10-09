@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
+import BackToDashboard from "@/components/common/BackToDashboard";
 
 export default function PetParks() {
   const navigate = useNavigate();
@@ -258,6 +259,7 @@ export default function PetParks() {
         
         {/* Hero Section */}
         <div className="text-center mb-12">
+          <BackToDashboard />
           <div className="inline-flex items-center px-6 py-3 bg-emerald-50 rounded-full text-sm font-semibold text-emerald-700 mb-6">
             <PawPrint className="w-4 h-4 mr-2" />
             Pet-Friendly Melbourne

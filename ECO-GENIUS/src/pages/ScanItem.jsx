@@ -17,6 +17,7 @@ import {
 import CameraCapture from "../components/scan/CameraCapture";
 import RecyclingAdvice from "../components/scan/RecyclingAdvice";
 import ItemConfirmation from "../components/scan/ItemConfirmation";
+import BackToDashboard from '@/components/common/BackToDashboard';
 
 export default function ScanItem() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -128,6 +129,7 @@ IMPORTANT: Don't default everything to red_landfill. Most common household items
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <BackToDashboard />
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">EcoGenius AI Lens</h1>
         <p className="text-lg text-gray-600">
