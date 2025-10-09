@@ -111,67 +111,225 @@ export default function About() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* AI Lens */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeWidth="2" d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                  <circle cx="12" cy="13" r="4" strokeWidth="2"/>
-                </svg>
+            <a href="/scanner" className="group">
+              <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                {/* Image with Background */}
+                <div className="h-32 relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: "url('/ailen-3.jpg')",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  {/* Title with Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeWidth="2" d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4" strokeWidth="2"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      AI Lens
+                    </h3>
+                  </div>
+                  
+                  {/* Description - Hidden by default, shown on hover */}
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 leading-relaxed">
+                      Get instant disposal advice by snapping a photo of any item.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">AI Lens</h3>
-              <p className="text-gray-600 mb-6">
-                Get instant disposal advice by snapping a photo of any item.
-              </p>
-              <a 
-                href="/scanner"
-                className="block w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Try the AI Lens
-              </a>
-            </div>
+            </a>
 
             {/* Search Guide */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="8" strokeWidth="2"/>
-                  <path strokeWidth="2" d="m21 21-4.35-4.35"/>
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Search Guide</h3>
-              <p className="text-gray-600 mb-6">
-                Quickly find the right bin or disposal method for thousands of items.
-              </p>
-              <a 
-                href="/searchguide"
-                className="block w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Open the Guide
-              </a>
-            </div>
+            <a href="/searchguide" className="group">
+              <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                <div className="h-32 relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: "url('/guide-3.jpg')",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
 
-            {/* Community Exchange */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeWidth="2" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4" strokeWidth="2"/>
-                  <path strokeWidth="2" d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
+                <div className="p-6">
+                  {/* Title with Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" strokeWidth="2"/>
+                        <path strokeWidth="2" d="m21 21-4.35-4.35"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      Search Guide
+                    </h3>
+                  </div>
+                  
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 leading-relaxed">
+                      Quickly find the right bin or disposal method for thousands of items.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Waste Billboard</h3>
-              <p className="text-gray-600 mb-6">
-                Upload and share reusable kerbside items with neighbours.
-              </p>
-              <a 
-                href="/billboard"
-                className="block w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Explore Billboard
-              </a>
-            </div>
+            </a>
+
+            {/* Billboard */}
+            <a href="/billboard" className="group">
+              <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                <div className="h-32 relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: "url('/billboard-3.jpg')",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+
+                <div className="p-6">
+                  {/* Title with Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeWidth="2" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4" strokeWidth="2"/>
+                        <path strokeWidth="2" d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      Billboard
+                    </h3>
+                  </div>
+                  
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 leading-relaxed">
+                      Share and discover reusable items in your community. Reduce waste together.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            {/* Pet Parks */}
+            <a href="/petparks" className="group">
+              <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                <div className="h-32 relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: "url('/pets-3.jpg')",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+
+                <div className="p-6">
+                  {/* Title with Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeWidth="2" d="M11 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM4 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM6 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM16 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                        <path strokeWidth="2" d="M12 17c-3 0-5-2-5-4 0-1 0-3 2-4 3-1 6-1 6 0 2 1 2 3 2 4 0 2-2 4-5 4z"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      Pet Parks
+                    </h3>
+                  </div>
+                  
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 leading-relaxed">
+                      Find pet-friendly parks and disposal facilities for your furry friends.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            {/* Data Analytics */}
+            <a href="/visualization" className="group">
+              <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                <div className="h-32 relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: "url('/data-3.jpg')",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+
+                <div className="p-6">
+                  {/* Title with Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeWidth="2" d="M12 20V10M18 20V4M6 20v-4"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      Data Analytics
+                    </h3>
+                  </div>
+                  
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 leading-relaxed">
+                      View waste disposal statistics and trends across Melbourne councils.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            {/* Council */}
+            <a href="/council" className="group">
+              <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                <div className="h-32 relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: "url('/council-3.jpg')",
+                    }}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+
+                <div className="p-6">
+                  {/* Title with Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeWidth="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <path strokeWidth="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                      Council
+                    </h3>
+                  </div>
+                  
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 leading-relaxed">
+                      Access council-specific waste disposal information and schedules.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -193,7 +351,7 @@ export default function About() {
             </p>
             
             <p className="text-lg">
-              Developed by Group 12 – ChaiStix (FIT5120), EcoGenius promotes sustainability, reduces illegal dumping, and strengthens community support.
+              Developed by – ChaiStix, EcoGenius promotes sustainability, reduces illegal dumping, and strengthens community support.
             </p>
           </div>
         </section>
