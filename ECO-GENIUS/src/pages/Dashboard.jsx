@@ -10,7 +10,7 @@ export default function Dashboard() {
         </svg>
       ),
       link: "/scanner",
-      bgColor: "from-emerald-400 to-teal-500",
+      bgImage: "/ailens.jpg",
       iconBg: "bg-emerald-100",
       iconColor: "text-emerald-600",
     },
@@ -24,7 +24,7 @@ export default function Dashboard() {
         </svg>
       ),
       link: "/searchguide",
-      bgColor: "from-indigo-400 to-purple-500",
+      bgImage: "/searchguide.jpg",
       iconBg: "bg-indigo-100",
       iconColor: "text-indigo-600",
     },
@@ -39,7 +39,7 @@ export default function Dashboard() {
         </svg>
       ),
       link: "/billboard",
-      bgColor: "from-purple-400 to-pink-500",
+      bgImage: "/billboard.jpg",
       iconBg: "bg-purple-100",
       iconColor: "text-purple-600",
     },
@@ -53,7 +53,7 @@ export default function Dashboard() {
         </svg>
       ),
       link: "/petparks",
-      bgColor: "from-green-400 to-emerald-500",
+      bgImage: "/pets.jpg",
       iconBg: "bg-green-100",
       iconColor: "text-green-600",
     },
@@ -66,7 +66,7 @@ export default function Dashboard() {
         </svg>
       ),
       link: "/visualization",
-      bgColor: "from-orange-400 to-red-500",
+      bgImage: "/data.jpg",
       iconBg: "bg-orange-100",
       iconColor: "text-orange-600",
     },
@@ -80,7 +80,7 @@ export default function Dashboard() {
         </svg>
       ),
       link: "/council",
-      bgColor: "from-sky-400 to-blue-500",
+      bgImage: "/council.jpg",
       iconBg: "bg-sky-100",
       iconColor: "text-sky-600",
     },
@@ -105,9 +105,14 @@ export default function Dashboard() {
               href={feature.link}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:scale-105 hover:-translate-y-2"
             >
-              {/* Gradient Header */}
-              <div className={`h-32 bg-gradient-to-br ${feature.bgColor} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+              {/* Image Header */}
+              <div className="h-32 relative overflow-hidden">
+                <img 
+                  src={feature.bgImage} 
+                  alt={feature.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                   <div className={`w-16 h-16 ${feature.iconBg} rounded-xl flex items-center justify-center shadow-lg ${feature.iconColor}`}>
                     {feature.icon}
