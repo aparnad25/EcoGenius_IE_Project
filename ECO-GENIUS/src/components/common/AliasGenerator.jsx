@@ -9,7 +9,8 @@ export default function AliasGenerator({ onGenerate }) {
   const handleGenerate = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/public/nickname_components.csv");
+      // Use encodeURI to safely encode the URL and use the public root path
+      const res = await fetch('/nickname_components.csv');
       const text = await res.text();
       const parsed = Papa.parse(text, { header: true });
       const rows = parsed.data.filter(
@@ -24,7 +25,9 @@ export default function AliasGenerator({ onGenerate }) {
       // pick a random row
       const random = rows[Math.floor(Math.random() * rows.length)];
       // generate alias
-      const alias = `${random.adjective}${random.noun}${random.number.padStart?.(2, "0") || random.number}`;
+      const alias = `${random.adjective}${random.noun}${
+        random.number.padStart?.(2, "0") || random.number
+      }`;
       onGenerate(alias);
     } catch (err) {
       console.error("Error generating alias:", err);
@@ -45,7 +48,7 @@ export default function AliasGenerator({ onGenerate }) {
                  disabled:opacity-50 disabled:cursor-not-allowed
                  transition-colors duration-150"
     >
-      <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+      <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
       Generate
     </Button>
   );
