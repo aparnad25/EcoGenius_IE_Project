@@ -13,7 +13,7 @@ export default function About() {
             }}
           >
             {/* Gradient Overlay for better readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/70 to-white/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/40 to-white/40"></div>
           </div>
 
           {/* Content */}
@@ -23,8 +23,8 @@ export default function About() {
             }}>
               Why EcoGenius
             </h1>
-            <p className="text-xl text-gray-700 font-medium max-w-3xl mx-auto">
-              Making waste disposal smarter for Melbourne
+            <p className="text-xl text-gray-900 font-medium max-w-3xl mx-auto">
+              Making bulky waste disposal smarter for Melbourne.
             </p>
           </div>
         </section>
@@ -110,7 +110,7 @@ export default function About() {
           
           <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
             <p className="text-lg">
-              EcoGenius is a smart digital platform tackling Melbourne&apos;s bulky waste problem by making disposal affordable, clear, and community-driven. Newcomers often face confusing rules and high costs, leading to reusable items ending up in landfill.
+              EcoGenius is a smart digital platform tackling Melbourne's bulky waste problem by making disposal affordable, clear, and resident-focused. Newcomers often face confusing rules and high costs, causing reusable items to end up in landfill.
             </p>
             
             <p className="text-lg">
@@ -118,7 +118,7 @@ export default function About() {
             </p>
             
             <p className="text-lg">
-              Developed by – ChaiStix, EcoGenius promotes sustainability, reduces illegal dumping, and strengthens community support.
+              Developed by ChaiStix, EcoGenius promotes sustainability, reduces illegal dumping, and builds stronger neighbourhood connections.
             </p>
           </div>
         </section>

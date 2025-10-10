@@ -25,7 +25,7 @@ export default function Home() {
             </h1>
             <div className="inline-block bg-black/30 backdrop-blur-sm rounded-2xl px-8 py-4">
               <p className="text-xl md:text-2xl text-white font-medium">
-                Helping residents dispose smarter, save money, and build sustainable Melbourne.
+                Helping Melbourne residents make smarter disposal choices, save money, and protect the city’s future.
               </p>
             </div>
           </div>

@@ -38,7 +38,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Making waste disposal smarter, more affordable, and community-driven for Melbourne residents.
+              Cleaner streets, affordable solutions, and smarter disposal for Melbourne.
             </p>
             <p className="text-sm text-gray-500">
               Developed by ChaiStix
