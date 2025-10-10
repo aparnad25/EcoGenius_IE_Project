@@ -10,7 +10,7 @@ export default function AliasGenerator({ onGenerate }) {
     setLoading(true);
     try {
       // Use encodeURI to safely encode the URL and use the public root path
-      const res = await fetch(encodeURI("/nickname_components.csv"));
+      const res = await fetch('/nickname_components.csv');
       const text = await res.text();
       const parsed = Papa.parse(text, { header: true });
       const rows = parsed.data.filter(
