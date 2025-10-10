@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/iteration3/'
   plugins: [react()],
   server: {
     allowedHosts: true

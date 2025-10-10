@@ -17,7 +17,7 @@ export default function PostFilters({ onChange = () => {} }) {
 
   //  1. load suburb CSV
   useEffect(() => {
-    Papa.parse("/public/Mel_Urban_Suburb.csv", {
+    Papa.parse("/Mel_Urban_Suburb.csv", {
       download: true,
       header: true,
       complete: (results) => {
