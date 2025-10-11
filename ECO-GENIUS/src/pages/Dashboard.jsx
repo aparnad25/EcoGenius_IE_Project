@@ -44,7 +44,7 @@ export default function Dashboard() {
       iconColor: "text-emerald-600",
     },
     {
-      title: "Pet Parks",
+      title: "Paw Control",
       description: "Find pet-friendly parks and disposal facilities for your furry friends.",
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
