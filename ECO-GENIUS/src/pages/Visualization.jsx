@@ -262,7 +262,7 @@ export default function Visualization() {
         disposed: values.disposed,
         recovered: values.collected - values.disposed
       }))
-      .filter(d => d.year >= 2009 && d.year <= 2024)
+      .filter(d => d.year >= 2009 && d.year <= 2023)
       .sort((a, b) => a.year - b.year);
 
     const years = data.map(d => d.year);
